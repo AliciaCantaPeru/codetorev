@@ -1,0 +1,47 @@
+<mat-card class="display-flex background-black">
+  <mat-card-content *ngIf="!send" class="mg-auto">
+    <img class="img-login" src="assets/img/logo-login.png" />
+    <form [formGroup]="forma" (ngSubmit)="onSubmit()" autocomplete="off">
+      <h1 class="color-primary title">
+        Confirmación de restablecimiento de contraseña
+      </h1>
+      <mat-form-field
+        class="full-width-input"
+        appearance="outline"
+        floatLabel="always"
+      >
+        <mat-label>Ingrese el e-mail con el que te registraron</mat-label>
+        <input matInput formControlName="correo" required [email]="true" />
+        <app-validacion [control]="getCorreo">
+          <mat-icon style="font-size: 12px">info</mat-icon>
+        </app-validacion>
+      </mat-form-field>
+      <div style="text-align: center; margin-top: 50px">
+        <button
+          type="button"
+          mat-raised-button
+          class="background-purple button-class background-green"
+          [routerLink]="['/login']"
+        >
+          Regresar
+        </button>
+        <button
+          type="submit"
+          mat-raised-button
+          class="button-class background-green"
+        >
+          Aceptar
+        </button>
+      </div>
+    </form>
+  </mat-card-content>
+  <mat-card-content *ngIf="send" style="margin: 100px 50px">
+    <img class="img-mail" src="assets/img/mail.png" />
+    <h1 class="color-primary title">
+      Confirmación de restablecimiento de contraseña
+    </h1>
+    <p class="color-secondary center">
+      Enviamos un correo a tu cuenta para que puedas reestablecer tu contraseña.
+    </p>
+  </mat-card-content>
+</mat-card>

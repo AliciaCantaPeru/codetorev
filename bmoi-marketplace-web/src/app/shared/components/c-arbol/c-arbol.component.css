@@ -1,0 +1,94 @@
+.ui-content-drag li > ul {
+  padding-inline-start: 1.8em;
+}
+
+.ui-content-drag ul ~ div {
+  font-weight: bold;
+}
+
+.arbol-content {
+  display: block;
+  position: relative;
+  margin: 0em;
+  padding: 0em;
+}
+
+.arbol-content li > div {
+  padding: 0.15em;
+  display: inline-flex;
+  width: 100%;
+}
+
+.ui-seleccionable:hover {
+  /* background: aliceblue; */
+}
+
+.arbol-content li {
+  padding: 0.1em;
+  /* color: rgba(0, 102, 153, 0.8); */
+  list-style: none;
+}
+
+.arbol-content li {
+  position: relative;
+  -webkit-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+}
+
+#arbol-content li > div:before {
+  position: absolute;
+  left: -2.5em;
+  top: 50%;
+  margin-top: -1em;
+  /* background: #006699; */
+  height: 2em;
+  width: 2em;
+  line-height: 2em;
+  text-align: center;
+  font-weight: bold;
+}
+
+.ui-content-drag ul li > div > i {
+  /* font-weight: bold; */
+  width: 17px;
+  text-align: center;
+  margin-top: 0.145em;
+}
+
+li > div > span:not(:last-child) {
+  /* font-weight: bold; */
+  width: 20px;
+  text-align: center;
+  margin-top: 0.145em;
+  margin-right: 0.05em;
+}
+
+.ui-seleccionable {
+  cursor: pointer;
+}
+
+.ui-no-content-drag {
+  display: table;
+  position: absolute;
+  top: 0;
+  left: 0;
+  text-align: center;
+  height: calc(100% - 45px);
+  width: calc(100% - 18px);
+}
+
+.ui-no-content-drag > label {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.ui-content-drag {
+  min-width: 99%;
+  min-height: 100%;
+  display: inline-block;
+  margin: 0.9em 0em;
+}
+
+.ui-check-todos {
+  /* border-bottom: 1px solid rgba(155, 206, 224, 1); */
+}

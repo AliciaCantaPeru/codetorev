@@ -1,0 +1,69 @@
+<app-toolbar-index>
+  <ng-container body *ngIf="contenidoWeb">
+    <!-- <perfect-scrollbar #perfectScroll [config]="{ suppressScrollX: true }"> -->
+    <div
+      class="margin-30"
+      fxLayout="column"
+      fxLayout.md="row"
+      fxLayout.lg="row"
+      fxLayout.sm="row"
+      fxLayoutGap="3%"
+      fxLayoutWrap
+      fxLayoutAlign="center center"
+    >
+      <div fxFlex="50%" class="center content-info">
+        <div [innerHTML]="getBody() | safeHtml"></div>
+      </div>
+      <div fxFlex="50%" class="center content-info">
+        <div style="width: calc(100% - 30px)">
+          <app-img-slider
+            [listaImagenes]="contenidoWeb?.listaSlide"
+            [interval]="4000"
+          >
+          </app-img-slider>
+        </div>
+      </div>
+    </div>
+    <div
+      class="padding-30"
+      fxLayout="column"
+      fxLayout.md="row"
+      fxLayout.lg="row"
+      fxLayout.sm="row"
+      fxLayoutWrap
+      fxLayoutGap="3%"
+      fxLayoutAlign="center"
+    >
+      <div fxFlex="100%" class="center pre-footer">
+        <div>
+          <mat-label class="mat-form-field-label">
+            ¿Te ayudó la información?
+          </mat-label>
+        </div>
+        <div class="mat-form-field-label">
+          <button mat-icon-button>
+            <mat-icon>thumb_up</mat-icon>
+          </button>
+          <button mat-icon-button>
+            <mat-icon>thumb_down</mat-icon>
+          </button>
+        </div>
+        <div>
+          <mat-label class="mat-form-field-label">
+            ¡Gracias asi nos ayudas a mejorar!
+          </mat-label>
+        </div>
+      </div>
+    </div>
+    <footer
+      class="content-prefooter"
+      [innerHTML]="getRedes() | safeHtml"
+    ></footer>
+    <footer
+      style="height: 50px; position: relative"
+      class="center"
+      [innerHTML]="getFooter() | safeHtml"
+    ></footer>
+    <!-- </perfect-scrollbar  > -->
+  </ng-container>
+</app-toolbar-index>

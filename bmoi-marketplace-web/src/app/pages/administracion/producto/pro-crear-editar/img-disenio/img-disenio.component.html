@@ -1,0 +1,70 @@
+<form [formGroup]="formGroup">
+  <mat-card class="margin-top-30">
+    <mat-card-content>
+      <h2>Imágenes y diseños</h2>
+      <p>
+        Seleccione las imagenes predeterminadas existentes que el cliente puede
+        usar para personalizar este producto. Tambien puede agregar imagenes de
+        auditoría propia, primero debe jalar y arrastrar o agregar desde URL.
+      </p>
+      <mat-form-field appearance="outline" floatLabel="always">
+        <mat-label>Menu de diseños </mat-label>
+        <mat-select (selectionChange)="listarCategoriaDisenio($event.value)">
+          <mat-option
+            *ngFor="let item of generalListaProducto?.listaMenuDisenio"
+            [value]="item.id"
+            >{{ item.nombre }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div
+        fxLayout="row"
+        fxLayout.md="row"
+        fxLayout.lg="row"
+        fxLayoutGap="3%"
+        fxLayout.sm="column"
+        fxLayoutWrap
+        fxLayoutAlign="center"
+      >
+        <div fxFlex="50%">
+          <h4 class="mat-form-field-label transform-label">
+            Categorías (predeterminados) &nbsp;
+            <mat-icon>help_outline</mat-icon>
+          </h4>
+          <perfect-scrollbar
+            style="height: 200px"
+            class="border-input"
+            [config]="{ suppressScrollX: true }"
+          >
+            <vista-c-arbol
+              [data]="listaCategoriaArbol"
+              (itemClick)="emitImgChangeChecked($event)"
+            >
+            </vista-c-arbol>
+          </perfect-scrollbar>
+        </div>
+        <div fxFlex="50%">
+          <h4 class="mat-form-field-label transform-label">
+            Categorías (propias) &nbsp;<mat-icon>help_outline</mat-icon>
+          </h4>
+          <perfect-scrollbar
+            style="height: 200px"
+            class="border-input"
+            [config]="{ suppressScrollX: true }"
+          >
+            <vista-c-arbol
+              [data]="listaCategoriaPropiaArbol"
+              (itemClick)="emitImgPropioChangeChecked($event)"
+            >
+            </vista-c-arbol>
+          </perfect-scrollbar>
+        </div>
+      </div>
+      <div>
+        <app-img-custom
+          [generalListaProducto]="generalListaProducto"
+        ></app-img-custom>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</form>

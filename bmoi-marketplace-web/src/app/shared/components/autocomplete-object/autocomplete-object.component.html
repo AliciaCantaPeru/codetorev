@@ -1,0 +1,23 @@
+<mat-form-field appearance="outline" floatLabel="always">
+  <mat-label>{{ label }}</mat-label>
+  <input
+    type="text"
+    [placeholder]="placeholder"
+    matInput
+    [formControl]="control"
+    [matAutocomplete]="auto"
+    (blur)="verificarSeleccion()"
+    [name]="placeholder"
+    autocomplete="off"
+  />
+  <mat-autocomplete
+    #auto="matAutocomplete"
+    [displayWith]="verDato(valuesFilter | async)"
+    (optionSelected)="selected($event)"
+  >
+    <mat-option *ngFor="let option of valuesFilter | async" [value]="option.id">
+      {{ option.nombre }}
+    </mat-option>
+  </mat-autocomplete>
+  <app-validacion [control]="control"></app-validacion>
+</mat-form-field>

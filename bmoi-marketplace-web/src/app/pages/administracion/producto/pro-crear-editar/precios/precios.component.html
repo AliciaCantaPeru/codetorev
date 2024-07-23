@@ -1,0 +1,174 @@
+<form [formGroup]="formGroup">
+  <mat-card class="margin-top-30">
+    <mat-card-content>
+      <h2>Fijación de precios</h2>
+      <div
+        fxLayout="row"
+        fxLayout.md="row"
+        fxLayout.lg="row"
+        fxLayout.sm="column"
+        fxLayoutGap="3%"
+        fxLayoutWrap
+        fxLayoutAlign="center"
+      >
+        <div fxFlex="50%" class="center">
+          <mat-form-field appearance="outline" floatLabel="always">
+            <mat-label>Precio predeterminado (excluye impuestos)</mat-label>
+            <input
+              matInput
+              type="text"
+              formControlName="preciobasico"
+              required
+              appDecimal
+            />
+            <app-validacion
+              [control]="auxProService.getControl('preciobasico')"
+            ></app-validacion>
+          </mat-form-field>
+        </div>
+        <div fxFlex="50%" class="center">
+          <mat-form-field appearance="outline" floatLabel="always">
+            <mat-label>Precio Lista</mat-label>
+            <input
+              matInput
+              type="text"
+              formControlName="preciolista"
+              required
+              appDecimal
+            />
+            <app-validacion
+              [control]="auxProService.getControl('preciolista')"
+            ></app-validacion>
+          </mat-form-field>
+        </div>
+      </div>
+      <div
+        fxLayout="row"
+        fxLayout.md="row"
+        fxLayout.lg="row"
+        fxLayout.sm="column"
+        fxLayoutGap="3%"
+        fxLayoutWrap
+        fxLayoutAlign="center"
+      >
+        <div fxFlex="50%" class="center">
+          <mat-form-field appearance="outline" floatLabel="always">
+            <mat-label>Clase de impuestos</mat-label>
+            <mat-select formControlName="impuesto" required>
+              <mat-option *ngFor="let item of listaImpuesto" [value]="item.tipo"
+                >{{ item.tipo }}
+              </mat-option>
+            </mat-select>
+            <app-validacion
+              [control]="auxProService.getControl('impuesto')"
+            ></app-validacion>
+          </mat-form-field>
+        </div>
+        <div fxFlex="50%">
+          <mat-form-field appearance="outline" floatLabel="always">
+            <span matPrefix>
+              %&nbsp;
+              {{ montoPorcentaje }}
+            </span>
+            <input matInput type="text" disabled />
+          </mat-form-field>
+        </div>
+      </div>
+
+      <mat-checkbox
+        style="width: 50%; margin: auto"
+        color="primary"
+        name="dsctoNuevo"
+        formControlName="descuentoProdNuevo"
+      >
+        Promoción descuento por nuevo
+      </mat-checkbox>
+      <div>
+        <mat-label
+          class="mat-form-field-label transform-label"
+          style="vertical-align: text-bottom"
+        >
+          Porcentaje
+        </mat-label>
+        <mat-form-field
+          appearance="outline"
+          floatLabel="always"
+          style="width: 100px"
+        >
+          <span matPrefix>% &nbsp;</span>
+          <input
+            matInput
+            type="text"
+            required
+            appDecimal
+            formControlName="porcentajeProdNuevo"
+          />
+          <app-validacion
+            [control]="auxProService.getControl('porcentajeProdNuevo')"
+            maxlength="150"
+          ></app-validacion>
+        </mat-form-field>
+      </div>
+      <div
+        fxLayout="row"
+        fxLayout.md="row"
+        fxLayout.lg="row"
+        fxLayout.sm="column"
+        fxLayoutGap="3%"
+        fxLayoutWrap
+        fxLayoutAlign="center"
+      >
+        <div fxFlex="50%" class="center">
+          <mat-form-field appearance="outline" floatLabel="always">
+            <mat-label>Fecha Inicio</mat-label>
+            <input
+              matInput
+              #InputpickerIni
+              [matDatepicker]="pickerIni"
+              placeholder="dd/MM/aa"
+              formControlName="fechaInicioProdNuevo"
+              (focus)="pickerIni.open()"
+              required
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="pickerIni"
+            ></mat-datepicker-toggle>
+            <mat-datepicker
+              #pickerIni
+              (closed)="InputpickerIni.blur()"
+            ></mat-datepicker>
+            <app-validacion
+              [control]="auxProService.getControl('fechaInicioProdNuevo')"
+            ></app-validacion>
+          </mat-form-field>
+        </div>
+        <div fxFlex="50%" class="center">
+          <mat-form-field appearance="outline" floatLabel="always">
+            <mat-label>Fecha Fin</mat-label>
+            <input
+              matInput
+              #InputPickerFin
+              [matDatepicker]="pickerFin"
+              (focus)="pickerFin.open()"
+              placeholder="dd/MM/aa"
+              formControlName="fechaFinProdNuevo"
+              required
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="pickerFin"
+            ></mat-datepicker-toggle>
+            <mat-datepicker
+              #pickerFin
+              (closed)="InputPickerFin.blur()"
+            ></mat-datepicker>
+            <app-validacion
+              [control]="auxProService.getControl('fechaFinProdNuevo')"
+            ></app-validacion>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</form>

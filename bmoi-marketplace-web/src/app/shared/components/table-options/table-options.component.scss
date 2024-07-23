@@ -1,0 +1,19 @@
+.mat-form-field {
+  width: 242px;
+  margin-left: 15px;
+}
+.mat-checkbox {
+  padding: 10px;
+  display: flex;
+}
+.option-column {
+  align-self: flex-start;
+  position: absolute;
+  right: 0px;
+  display: flex;
+}
+.option {
+  text-align: right;
+  display: flex;
+  align-items: center;
+}

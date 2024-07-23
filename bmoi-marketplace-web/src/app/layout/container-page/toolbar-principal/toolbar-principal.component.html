@@ -1,0 +1,79 @@
+<mat-toolbar class="background-black">
+  <button
+    mat-icon-button
+    class="example-icon"
+    aria-label="Example icon-button with menu icon"
+    (click)="drawer.toggle()"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+  <p>
+    <mat-icon
+      matBadge="1"
+      matBadgeColor="warn"
+      [matBadgeHidden]="false"
+      style="margin-right: 10px"
+    >
+      notifications
+    </mat-icon>
+    texto informativo de alertas
+  </p>
+  <span class="example-spacer"></span>
+  <ng-container *ngFor="let cifra of diasRestante?.split('')">
+    <span class="dias-plan">{{ cifra }} </span>
+  </ng-container>
+  <p>Días de prueba</p>
+  <button mat-button class="background-green" style="margin-left: 40px">
+    <mat-label>Seleccionar un plan</mat-label>
+  </button>
+  <button mat-button aria-label="Menu" [matMenuTriggerFor]="menu">
+    <!-- <mat-icon>person</mat-icon> -->
+    <!-- <mat-label>{{ usuario.nombres }} ({{ usuario.rol }})</mat-label> -->
+    <mat-icon>settings</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu" xPosition="before" appNoClose>
+    <div mat-menu-item appNoClose>
+      <mat-label>{{ usuario.nombres }} </mat-label>
+    </div>
+    <div mat-menu-item appNoClose>
+      <mat-label>{{ usuario.rol }}</mat-label>
+    </div>
+    <div mat-menu-item appNoClose>
+      <mat-label>Tema</mat-label>
+      <mat-slide-toggle
+        [(ngModel)]="themeToggle"
+        appNoClose
+        (change)="changeTheme($event)"
+        style="float: right; margin-top: 11px"
+      >
+        <mat-icon>{{ themeToggle ? "dark_mode" : "light_mode" }}</mat-icon>
+      </mat-slide-toggle>
+    </div>
+    <!-- <mat-button-toggle-group mat-menu-item>
+      <mat-button-toggle
+        value="light_mode"
+        (click)="onSetThemes('theme-light')"
+      >
+        <mat-icon>light_mode</mat-icon>
+      </mat-button-toggle>
+      <mat-button-toggle
+        value="theme-alternate"
+        (click)="onSetThemes('theme-alternate')"
+      >
+        <mat-icon>dark_mode</mat-icon>
+      </mat-button-toggle>
+    </mat-button-toggle-group> -->
+
+    <!-- <button mat-menu-item (click)="onSetThemes('theme-light')">
+      <span>Oscuro</span>
+    </button>
+    <button mat-menu-item (click)="onSetThemes('theme-alternate')">
+      <span>Claro</span>
+    </button> -->
+    <button mat-menu-item (click)="logout()">
+      <mat-icon>logout</mat-icon>
+      <span>Cerrar Sesión</span>
+    </button>
+  </mat-menu>
+  <span class="version">{{ version }}</span>
+</mat-toolbar>

@@ -1,0 +1,55 @@
+// copied from compiled Material
+
+:host {
+  height: 26px;
+}
+
+:host.mat-checked .mat-slide-toggle-thumb-container {
+  transform: translate3d(24px, 0, 0);
+}
+
+[dir="rtl"] :host.mat-checked .mat-slide-toggle-thumb-container {
+  transform: translate3d(-24px, 0, 0);
+}
+
+.mat-slide-toggle-thumb-container {
+  width: 24px;
+  height: 24px;
+  top: -2px;
+}
+
+.mat-slide-toggle-thumb {
+  height: 24px;
+  width: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+$icon-size: 17px;
+
+mat-icon {
+  font-size: $icon-size;
+  width: $icon-size;
+  height: $icon-size;
+}
+
+.mat-slide-toggle-bar {
+  width: 48px;
+  height: 20px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  > mat-icon {
+    margin: 0 auto;
+  }
+}
+
+.mat-slide-toggle-ripple {
+  top: calc(50% - 24px);
+  left: calc(50% - 24px);
+  height: 48px;
+  width: 48px;
+}

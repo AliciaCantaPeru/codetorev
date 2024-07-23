@@ -1,0 +1,21 @@
+<nz-date-picker
+  style="height: 54.5px; margin-top: 4px"
+  [nzMode]="tipoCalendar"
+  [nzDisabledDate]="disabledDate"
+  [(ngModel)]="fechaInicio"
+  (ngModelChange)="onChangeRange($event, 1)"
+  [nzPlaceHolder]="
+    tipoCalendar == 'week' ? 'Seleccione Semana' : 'Fecha de inicio'
+  "
+  required
+></nz-date-picker>
+<nz-date-picker
+  *ngIf="tipoCalendar != 'week'"
+  style="height: 54.5px; margin-top: 4px"
+  [nzDisabledDate]="disabledDate"
+  [nzMode]="tipoCalendar"
+  nzPlaceHolder="Fecha de Fin"
+  [(ngModel)]="fechaFin"
+  (ngModelChange)="onChangeRange($event, 2)"
+></nz-date-picker>
+<br />

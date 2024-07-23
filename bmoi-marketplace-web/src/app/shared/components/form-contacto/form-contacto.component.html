@@ -1,0 +1,293 @@
+<form [formGroup]="formGroup" autocomplete="off">
+  <ng-container
+    formArrayName="personas"
+    *ngFor="let item of getFormArray().controls; let i = index"
+  >
+    <div [formGroupName]="i" *ngIf="ordenSeleccionado == i + 1">
+      <div
+        class="container"
+        fxLayout="row"
+        fxLayout.sm="column"
+        fxLayoutGap="3%"
+      >
+        <div fxFlex="50%" class="center">
+          <mat-form-field appearance="outline" floatLabel="always">
+            <mat-label>Primer nombre </mat-label>
+            <input
+              matInput
+              type="text"
+              placeholder="Primer nombres"
+              formControlName="priNombre"
+              required
+              maxlength="255"
+              appSoloAlfabeto
+            />
+            <app-validacion [control]="item.get('priNombre')"></app-validacion>
+          </mat-form-field>
+        </div>
+        <div fxFlex="50%" class="center">
+          <mat-form-field appearance="outline" floatLabel="always">
+            <mat-label>Segundo nombre </mat-label>
+            <input
+              matInput
+              type="text"
+              placeholder="Segundo nombres"
+              formControlName="segNombre"
+              maxlength="255"
+              appSoloAlfabeto
+            />
+            <app-validacion [control]="item.get('segNombre')"></app-validacion>
+          </mat-form-field>
+        </div>
+      </div>
+      <div
+        class="container"
+        fxLayout="row"
+        fxLayout.sm="column"
+        fxLayoutGap="3%"
+      >
+        <div fxFlex="50%" class="center">
+          <mat-form-field appearance="outline" floatLabel="always">
+            <mat-label>Primer apellido</mat-label>
+            <input
+              matInput
+              type="text"
+              placeholder="Primer apellido"
+              required
+              formControlName="priApellido"
+              maxlength="255"
+            />
+            <app-validacion
+              [control]="item.get('priApellido')"
+            ></app-validacion>
+          </mat-form-field>
+        </div>
+        <div fxFlex="50%" class="center">
+          <mat-form-field appearance="outline" floatLabel="always">
+            <mat-label>Segundo apellido</mat-label>
+            <input
+              matInput
+              type="text"
+              placeholder="Segundo apellido"
+              formControlName="segApellido"
+              required
+              maxlength="255"
+            />
+            <app-validacion
+              [control]="item.get('segApellido')"
+            ></app-validacion>
+          </mat-form-field>
+        </div>
+      </div>
+      <div
+        class="container"
+        fxLayout="row"
+        fxLayout.sm="column"
+        fxLayoutGap="3%"
+      >
+        <div fxFlex="50%" class="center">
+          <mat-form-field appearance="outline" floatLabel="always">
+            <mat-label>Sexo</mat-label>
+            <mat-select
+              name="sexo"
+              required
+              formControlName="sexo"
+              placeholder="Sexo"
+            >
+              <mat-option *ngFor="let doc of listaSexo" [value]="doc.fieldvalue"
+                >{{ doc.descripcion }}
+              </mat-option>
+            </mat-select>
+            <app-validacion [control]="item.get('sexo')"></app-validacion>
+          </mat-form-field>
+        </div>
+        <div fxFlex="50%" class="center">
+          <mat-form-field appearance="outline" floatLabel="always">
+            <mat-label>Fecha de nacimiento</mat-label>
+            <input
+              matInput
+              #input
+              [matDatepicker]="picker"
+              placeholder="dd/mm/aa"
+              formControlName="fecNacimiento"
+              [max]="maxDate"
+              required
+              (focus)="picker.open()"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker (closed)="input.blur()"></mat-datepicker>
+            <app-validacion
+              [control]="item.get('fecNacimiento')"
+            ></app-validacion>
+          </mat-form-field>
+        </div>
+      </div>
+      <div
+        class="container"
+        fxLayout="row"
+        fxLayout.sm="column"
+        fxLayoutGap="3%"
+      >
+        <div fxFlex="50%" class="center">
+          <mat-form-field appearance="outline" floatLabel="always">
+            <mat-label>Tipo de documento</mat-label>
+            <mat-select
+              name="tipDocumento"
+              required
+              placeholder="Seleccionar"
+              formControlName="tipDocumento"
+            >
+              <mat-option
+                *ngFor="let doc of listaTipoDocumento"
+                [value]="doc.fieldvalue"
+                >{{ doc.fieldvalue }}
+              </mat-option>
+            </mat-select>
+            <app-validacion
+              [control]="item.get('tipDocumento')"
+            ></app-validacion>
+          </mat-form-field>
+        </div>
+        <div fxFlex="50%" class="center">
+          <mat-form-field appearance="outline" floatLabel="always">
+            <mat-label>Número de documento</mat-label>
+            <input
+              matInput
+              required
+              placeholder="Número de documento"
+              formControlName="numDocumento"
+              minlength="8"
+              (keypress)="soloNumero($event)"
+              [maxlength]="item.get('tipDocumento')?.value == 'DNI' ? 8 : 20"
+            />
+            <app-validacion
+              [control]="item.get('numDocumento')"
+            ></app-validacion>
+          </mat-form-field>
+        </div>
+      </div>
+      <mat-form-field appearance="outline" floatLabel="always">
+        <mat-label>Email</mat-label>
+        <input
+          matInput
+          type="text"
+          required
+          formControlName="email"
+          placeholder="email@domino.com"
+          [email]="true"
+          maxlength="100"
+        />
+        <app-validacion [control]="item.get('email')"></app-validacion>
+      </mat-form-field>
+      <div
+        class="container"
+        fxLayout="row"
+        fxLayout.sm="column"
+        fxLayoutGap="3%"
+      >
+        <div fxFlex="50%" class="center">
+          <mat-form-field appearance="outline" floatLabel="always">
+            <mat-label>Telefono móvil 1</mat-label>
+            <input
+              matInput
+              type="text"
+              required
+              placeholder="985165122"
+              formControlName="celular1"
+              (keypress)="soloNumero($event)"
+              minlength="9"
+              maxlength="20"
+            />
+            <app-validacion
+              [control]="item.get('celular1')"
+              minlength="9"
+            ></app-validacion>
+          </mat-form-field>
+        </div>
+        <div fxFlex="50%" class="center">
+          <mat-form-field appearance="outline" floatLabel="always">
+            <mat-label>Telefono móvil 2</mat-label>
+            <input
+              matInput
+              type="text"
+              minlength="9"
+              placeholder="985165122"
+              formControlName="celular2"
+              maxlength="20"
+              minlength="9"
+              (keypress)="soloNumero($event)"
+              valueNotEqual
+            />
+            <app-validacion
+              [control]="item.get('celular2')"
+              minlength="9"
+            ></app-validacion>
+          </mat-form-field>
+        </div>
+      </div>
+      <mat-form-field appearance="outline" floatLabel="always">
+        <mat-label>Cargo</mat-label>
+        <mat-select
+          name="cargo"
+          required
+          placeholder="Seleccionar"
+          formControlName="cargo"
+        >
+          <mat-option *ngFor="let doc of listaCargo" [value]="doc.fieldvalue"
+            >{{ doc.fieldvalue }}
+          </mat-option>
+        </mat-select>
+        <app-validacion [control]="item.get('cargo')"></app-validacion>
+      </mat-form-field>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="idSeller">
+    <button
+      style="width: 155px"
+      mat-menu-item
+      (click)="resetearCuenta()"
+      type="button"
+      *ngIf="permitirModificar && idSeller != -1"
+    >
+      <mat-label>Resetear contraseña</mat-label>
+    </button>
+  </ng-container>
+  <button
+    mat-button
+    [matMenuTriggerFor]="menu"
+    class="frig"
+    type="button"
+    *ngIf="!esPerfil && tipo != 2"
+  >
+    <mat-label>{{
+      permitirModificar ? "Agregar Contactos" : "Ver Contactos"
+    }}</mat-label>
+  </button>
+  <mat-menu #menu="matMenu">
+    <ng-container *ngFor="let item of getFormArray().controls; let i = index">
+      <div mat-menu-item *ngIf="!item.invalid">
+        <mat-icon (click)="eliminar(i)">cancel</mat-icon>
+        <mat-label (click)="editarPersona(i)">
+          {{
+            item.get("nombres")?.value +
+              " " +
+              item.get("priApellido")?.value +
+              " " +
+              item.get("segApellido")?.value
+          }}</mat-label
+        >
+      </div>
+    </ng-container>
+    <button
+      mat-menu-item
+      (click)="agregarPersona()"
+      type="button"
+      *ngIf="permitirModificar"
+    >
+      <mat-label>Nuevo</mat-label>
+    </button>
+  </mat-menu>
+</form>

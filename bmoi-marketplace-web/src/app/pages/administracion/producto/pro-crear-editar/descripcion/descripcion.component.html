@@ -1,0 +1,17 @@
+<form [formGroup]="formGroup">
+  <mat-card class="margin-top-30">
+    <mat-card-content>
+      <h2>Descripción</h2>
+      <div>
+        <quill-editor
+          [styles]="editorStyle"
+          placeholder="Enter Text"
+          [modules]="quillConfiguration"
+          formControlName="descripcion"
+          required
+        >
+        </quill-editor>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</form>

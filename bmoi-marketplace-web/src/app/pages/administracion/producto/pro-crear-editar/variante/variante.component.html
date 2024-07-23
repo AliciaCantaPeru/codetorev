@@ -1,0 +1,130 @@
+<mat-card class="margin-top-30">
+  <mat-card-content>
+    <h2>Segmento Variantes</h2>
+    <div
+      class="container"
+      fxLayout="row"
+      fxLayout.md="row"
+      fxLayout.lg="row"
+      fxLayout.sm="row"
+      fxLayoutWrap
+      fxLayoutAlign="center"
+    >
+      <div fxFlex="20%" class="center">
+        <mat-label>Talla</mat-label>
+      </div>
+      <div fxFlex="30%" class="center">
+        <mat-label>Color</mat-label>
+      </div>
+      <div fxFlex="25%" class="center">
+        <mat-label>S/. Precio</mat-label>
+      </div>
+      <div fxFlex="15%" class="center">
+        <mat-label>Cantidad</mat-label>
+      </div>
+      <div fxFlex="10%" class="center"></div>
+    </div>
+    <form [formGroup]="formGroup">
+      <ng-container
+        formArrayName="listaVariante"
+        *ngFor="
+          let item of auxProService.getFormArray('listaVariante').controls;
+          let i = index
+        "
+      >
+        <div
+          class="container table-input"
+          fxLayout="row"
+          fxLayout.md="row"
+          fxLayout.lg="row"
+          fxLayout.sm="row"
+          fxLayoutWrap
+          fxLayoutGap="3%"
+          fxLayoutAlign="center"
+          [formGroupName]="i"
+        >
+          <div fxFlex="20%" class="center">
+            <mat-form-field appearance="outline" floatLabel="always">
+              <mat-select
+                required
+                formControlName="idTalla"
+                (valueChange)="changeTalla($event, i)"
+              >
+                <mat-option
+                  *ngFor="let item of generalListaProducto?.listaTalla"
+                  [value]="item.id"
+                >
+                  {{ item.nombre }}
+                </mat-option>
+              </mat-select>
+              <app-validacion [control]="item.get('idTalla')"></app-validacion>
+            </mat-form-field>
+          </div>
+          <div fxFlex="30%" class="center">
+            <mat-form-field appearance="outline" floatLabel="always">
+              <mat-select
+                required
+                formControlName="idColor"
+                (valueChange)="changeColor($event, i)"
+              >
+                <mat-option
+                  *ngFor="let item of generalListaProducto?.listaColor"
+                  [value]="item.id"
+                >
+                  {{ item.nombre }}
+                </mat-option>
+              </mat-select>
+              <app-validacion [control]="item.get('idColor')"></app-validacion>
+            </mat-form-field>
+          </div>
+          <div fxFlex="25%" class="center">
+            <mat-form-field appearance="outline" floatLabel="always">
+              <input
+                matInput
+                type="text"
+                formControlName="preciolista"
+                required
+                maxlength="255"
+                appDecimal
+              />
+              <app-validacion
+                [control]="item.get('preciolista')"
+              ></app-validacion>
+            </mat-form-field>
+          </div>
+          <div fxFlex="15%" class="center">
+            <mat-form-field appearance="outline" floatLabel="always">
+              <input
+                matInput
+                type="text"
+                formControlName="stock"
+                required
+                maxlength="255"
+                appNumber
+              />
+              <app-validacion [control]="item.get('stock')"></app-validacion>
+            </mat-form-field>
+          </div>
+          <div fxFlex="10%" class="center">
+            <button
+              mat-icon-button
+              color="primary"
+              type="button"
+              style="margin-top: -10px"
+              (click)="remove(i)"
+              *ngIf="i != 0"
+            >
+              <mat-icon style="margin-top: 0px"> delete </mat-icon>
+            </button>
+          </div>
+        </div>
+      </ng-container>
+      <div style="text-align: right" class="margin-top-30">
+        <button mat-button type="submit" (click)="add()">
+          <mat-icon>add</mat-icon>
+          <mat-label> Agregar Variantes </mat-label>
+        </button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,33 @@
+<div class="content-img">
+  <ng-container *ngIf="editable">
+    <label
+      mat-mini-fab
+      class="button-badge"
+      (change)="seleccionarImagen($event)"
+      *ngIf="imageTemporal === null"
+    >
+      <mat-icon>camera_alt</mat-icon>
+      <input #inputFile type="file" style="display: none" accept="image/*" />
+    </label>
+    <label
+      mat-mini-fab
+      class="button-badge"
+      *ngIf="imageTemporal !== null"
+      (click)="cancelar()"
+    >
+      <mat-icon>close</mat-icon>
+    </label>
+  </ng-container>
+  <img
+    class="img-login mat-card-avatar"
+    [src]="imageTemporal"
+    *ngIf="imageTemporal !== null"
+  />
+  <img
+    class="img-login mat-card-avatar"
+    [src]="image"
+    *ngIf="image != null && imageTemporal === null"
+  />
+  <div class="not-image" *ngIf="image == null && imageTemporal === null"></div>
+</div>
+

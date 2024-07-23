@@ -1,0 +1,42 @@
+<form [formGroup]="formGroup">
+  <mat-card class="margin-top-30">
+    <mat-card-content>
+      <h2>Detalles de envío</h2>
+      <div
+        fxLayout="row"
+        fxLayout.md="row"
+        fxLayout.lg="row"
+        fxLayout.sm="column"
+        fxLayoutGap="3%"
+        fxLayoutWrap
+        fxLayoutAlign="center"
+      >
+        <div fxFlex="100%">
+          <mat-form-field appearance="outline" floatLabel="always">
+            <mat-label>Precio de envío fijo </mat-label>
+            <input
+              matInput
+              formControlName="precioenvio"
+              type="text"
+              appDecimal
+              required
+            />
+            <app-validacion
+              [control]="auxProService.getControl('precioenvio')"
+              maxlength="150"
+            ></app-validacion>
+          </mat-form-field>
+        </div>
+        <div fxFlex="100%" style="display: flex; align-items: center">
+          <mat-checkbox
+            color="primary"
+            formControlName="enviogratis"
+            name="gratis"
+          >
+            Envío gratis
+          </mat-checkbox>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</form>

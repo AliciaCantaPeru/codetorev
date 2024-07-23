@@ -1,0 +1,469 @@
+@mixin set-mat-drawer($a) {
+  // $color-config: mat.get-color-config($theme);
+  // $primary-palette: map.get($color-config, "primary");
+  $line-input: map-get($a, "line-input");
+  $relleno-card: map-get($a, "relleno-card");
+  $background: map-get($a, "background-bg");
+  $primary: map-get($a, "primary-bg");
+  $secondary: map-get($a, "secondary-bg");
+  $black: map-get($a, "black-bg");
+  $grey-secon: map-get($a, "grey-secon-bg");
+  $warning: map-get($a, "warning-bg");
+  $purple: map-get($a, "purple-bg");
+  $bg: map-get($a, "bg-bg");
+  $green: map-get($a, "green-bg");
+  $blue-bg: map-get($a, "blue-bg");
+  $pri-gradient: map-get($a, "pri-gradient-bg");
+  // $black-bg: black;
+  // $grey-secon-bg: #676869;
+  // $warning-bg: #b82d23;
+  // $purple-bg: #676869;
+  // $bg-bg: #f0f3f4;
+  // $green-bg: #009432;
+  // $pri-gradient-bg: linear-gradient(0deg, #052c54, #052c54, #185abd);
+
+  html,
+  body {
+    height: 100%;
+    font-size: mat-font-size($custom-typography, body-1);
+    font-family: mat-font-family($custom-typography);
+    line-height: mat-line-height($custom-typography, body-1);
+    background: $bg;
+  }
+  body {
+    margin: 0;
+  }
+  .background-ambar {
+    background: #ffb800;
+    color: #ffffff;
+  }
+  .color-ambar {
+    color: #ffb800;
+  }
+  .background-ambar-black {
+    background: #bba100;
+    color: #ffffff;
+  }
+  .color-ambar-black {
+    color: #bba100;
+  }
+  .color-primary {
+    color: $primary !important;
+  }
+  .color-blue-bg {
+    color: $blue-bg !important;
+  }
+  .color-secondary {
+    color: $secondary !important;
+  }
+  .color-green {
+    color: $green !important;
+  }
+  .table-purple {
+    background: rgba($purple, 0.19) !important;
+  }
+  .color-warning {
+    color: $warning !important;
+  }
+  .background-primary {
+    background: $primary !important;
+    color: white !important;
+  }
+  .background-body {
+    background: $bg;
+  }
+  .c-primary-g {
+    color: $pri-gradient;
+  }
+  .b-primary-g {
+    color: $pri-gradient;
+  }
+  .mat-drawer-container {
+    background: $bg !important;
+  }
+  .mat-form-field-label {
+    color: $secondary !important;
+  }
+  .mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid
+    .mat-form-field-outline-thick {
+    color: $warning !important;
+  }
+  /* input color class */
+  /* Change label color on focused */
+  input.mat-input-element,
+  textarea.mat-input-element,
+  .mat-option-text,
+  .mat-form-field.mat-focused .mat-form-field-label {
+    color: $primary;
+  }
+  .mat-focused .mat-form-field-underline .mat-form-field-ripple {
+    background-color: $secondary !important;
+  }
+  .mat-form-field-invalid .mat-input-element {
+    caret-color: $secondary;
+  }
+  .mat-form-field-empty.mat-form-field-label {
+    color: $secondary;
+  }
+  .mat-error {
+    .mat-icon {
+      margin-right: 10px;
+    }
+    display: flex !important;
+    align-items: center;
+  }
+  .mat-datepicker-content {
+    background: $bg !important;
+    color: $primary !important;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: $primary !important;
+  }
+  .center {
+    text-align: center;
+  }
+
+  .md-input.ng-invalid.ng-dirty {
+    border-color: $warning;
+  }
+
+  .mat-raised-button,
+  .mat-stroked-button,
+  .mat-flat-button {
+    padding: 0 1.15em;
+    margin: 0 0.65em;
+    min-width: 3em;
+    line-height: 20px;
+  }
+  .mat-stroked-button {
+    border: 1px solid $blue-bg !important;
+  }
+  .mat-standard-chip {
+    padding: 0.5em 0.85em;
+    min-height: 2.5em;
+  }
+
+  .material-icons {
+    font-size: 18px;
+    font-family: "Material Icons", "Roboto";
+    .mat-badge-content {
+      font-family: "Roboto";
+    }
+  }
+
+  .flef {
+    float: left;
+  }
+
+  .frig {
+    float: right;
+  }
+
+  .mat-column-acciones {
+    text-align: center !important;
+  }
+
+  .mat-header-cell,
+  .mat-menu-item,
+  .mat-menu-item .mat-icon-no-color {
+    // color: $primary;
+  }
+
+  .mat-expansion-panel-header-title,
+  .mat-expansion-panel-header {
+    color: $grey-secon;
+  }
+
+  .mat-cell,
+  .mat-paginator-container .mat-select-value,
+  .mat-paginator,
+  .mat-select-value,
+  .mat-radio-button,
+  .mat-form-field-empty.mat-form-field-label,
+  .mat-checkbox {
+    color: $secondary;
+  }
+
+  .mat-radio-outer-circle,
+  .mat-checkbox-frame {
+    border-color: $secondary;
+  }
+
+  .content-img {
+    text-align: center;
+    position: relative;
+    width: 125px;
+    margin: auto;
+  }
+
+  .mat-placeholder-required.mat-form-field-required-marker {
+    color: rgba($warning, 0.7) !important;
+  }
+
+  .img-login {
+    width: 80%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    max-width: 400px;
+  }
+  .content-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    // background: ;
+    position: absolute;
+    left: 0%;
+    right: 44.44%;
+    top: 0%;
+    bottom: 0%;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    background: $green;
+  }
+  .background-green {
+    background: $green;
+    color: white !important;
+    .mat-list-option {
+      color: white !important;
+    }
+  }
+  .mat-toolbar {
+    background: $relleno-card;
+    box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.25);
+  }
+  .background-black {
+    background: black;
+    color: white !important;
+    .mat-list-option {
+      color: white !important;
+    }
+  }
+  .background-toolbar {
+    background: white;
+    color: $secondary;
+  }
+
+  .preview-solicitud {
+    p {
+      color: $secondary;
+      margin: 5px 0;
+      span {
+        color: $grey-secon;
+      }
+    }
+    h4,
+    h2,
+    h3 {
+      color: black;
+    }
+    a {
+      color: #185abd;
+    }
+  }
+  th.mat-header-cell,
+  td.mat-cell,
+  td.mat-footer-cell {
+    padding: 0px 10px !important;
+  }
+  .container-table {
+    overflow-y: auto;
+  }
+  .swal2-html-container {
+    color: $secondary;
+    font-family: "Roboto";
+    font-size: 13px;
+  }
+  .swal2-title {
+    font-size: 16px;
+  }
+  .mat-primary-alert {
+    background: $primary;
+  }
+  .button-badge {
+    position: absolute;
+    z-index: 1;
+    right: 2px;
+    bottom: 16px;
+    border-radius: 50px;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    .mat-icon {
+      margin-left: 6px;
+    }
+    :hover {
+      opacity: 0.92;
+    }
+  }
+
+  .not-image {
+    font-size: 110px;
+    width: 110px;
+    color: $secondary;
+    height: 110px;
+    border-radius: 50%;
+    border-style: dotted;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    line-height: 1.2;
+  }
+
+  .color-black {
+    color: $black;
+  }
+  .bg-black {
+    background: $black;
+  }
+  @-webkit-keyframes spin {
+    0% {
+      transform: rotate(0);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @-moz-keyframes spin {
+    0% {
+      -moz-transform: rotate(0);
+    }
+
+    100% {
+      -moz-transform: rotate(360deg);
+    }
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  .spinner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1003;
+    background: $primary;
+    overflow: hidden;
+  }
+
+  .spinner div:first-child {
+    display: block;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    width: 150px;
+    height: 150px;
+    margin: -75px 0 0 -75px;
+    border-radius: 50%;
+    box-shadow: 0 3px 3px 0 $purple;
+    transform: translate3d(0, 0, 0);
+    animation: spin 2s linear infinite;
+  }
+
+  .spinner div:first-child:after,
+  .spinner div:first-child:before {
+    content: "";
+    position: absolute;
+    border-radius: 5px;
+  }
+
+  .spinner div:first-child:before {
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    box-shadow: 0 3px 3px 0 rgb(255, 255, 255);
+    -webkit-animation: spin 3s linear infinite;
+    animation: spin 3s linear infinite;
+  }
+  .tab-vertical .mat-tab-label-active {
+    border-right: 2px solid $blue-bg !important;
+  }
+  .ant-upload.ant-upload-drag {
+    background: $relleno-card !important;
+    margin-top: 20px;
+    height: 110px;
+  }
+  .border-input {
+    border: 0.0005em solid $line-input;
+    border-radius: 5px;
+  }
+  .ql-snow .ql-picker,
+  .ql-snow .ql-stroke {
+    stroke: $black;
+    color: $black;
+  }
+  .ql-snow .ql-stroke.ql-fill {
+    stroke: $black;
+  }
+  .ql-snow .ql-fill {
+    stroke: $black;
+  }
+  .ql-snow .ql-picker-options {
+    background-color: $relleno-card;
+  }
+  .ql-container.ql-snow,
+  .ql-toolbar.ql-snow {
+    border: 0.0005em solid $line-input;
+  }
+
+  .visor-img-select {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    &:hover {
+      background-color: rgba($blue-bg, 0.1);
+    }
+  }
+  .visor-img-select-hover {
+    background-color: rgba($blue-bg, 0.1);
+  }
+}
+$custom-typography: mat-typography-config(
+  $font-family: '"Roboto", sans-serif',
+  $display-4: mat-typography-level(13px, 24px, 700),
+  $display-3: mat-typography-level(13px, 24px, 700),
+  $display-2: mat-typography-level(13px, 24px, 700),
+  $display-1: mat-typography-level(13px, 24px, 700),
+  $headline: mat-typography-level(13px, 24px, 700),
+  $body-1: mat-typography-level(13px, 14px, 500),
+  $button: mat-typography-level(13px, 24px, 500),
+  $input: mat-typography-level(13px, 1.25, 400),
+  $title: mat-typography-level(14px, 1.25, 400),
+  $subheading-2: mat-typography-level(13px, 1.25, 400),
+  $subheading-1: mat-typography-level(13px, 1.25, 400),
+  $body-2: mat-typography-level(13px, 1.25, 400),
+  $caption: mat-typography-level(13px, 1.25, 400),
+);
+@include mat-core($custom-typography);
+@include mat-base-typography($custom-typography);
+@include angular-material-typography($custom-typography);
+@include mat-core($custom-typography);

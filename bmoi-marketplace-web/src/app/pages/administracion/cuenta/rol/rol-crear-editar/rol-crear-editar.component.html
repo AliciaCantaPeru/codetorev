@@ -1,0 +1,43 @@
+<h1 mat-dialog-title>MODIFICAR ROL</h1>
+
+<mat-divider></mat-divider>
+
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="formGroup" class="center">
+    <mat-form-field appearance="outline" floatLabel="always">
+      <mat-label>Id</mat-label>
+      <input matInput type="text" required formControlName="id" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" floatLabel="always">
+      <mat-label>Nombre de rol </mat-label>
+      <input matInput type="text" required formControlName="nombre" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" floatLabel="always">
+      <mat-label>Estado </mat-label>
+      <input matInput type="text" required formControlName="estado" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" floatLabel="always">
+      <mat-label>Descripción</mat-label>
+      <textarea
+        matInput
+        cdkTextareaAutosize
+        cdkAutosizeMaxRows="10"
+        cdkAutosizeMinRows="5"
+        formControlName="descripcion"
+        maxlength="255"
+      ></textarea>
+    </mat-form-field>
+    <app-validacion [control]="getControl('descripcion')"></app-validacion>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="dialogRef.close(null)">Cancelar</button>
+  <button
+    mat-button
+    (click)="actualizarRol()"
+    cdkFocusInitial
+    *ngIf="permitirModificar"
+  >
+    Guardar
+  </button>
+</mat-dialog-actions>

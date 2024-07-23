@@ -1,0 +1,77 @@
+<h2 mat-dialog-title style="padding: 0 16px">
+  {{
+    data != 1
+      ? "Añadir imagen o video de YouTube desde la URL"
+      : "Añadir imagen  de YouTube desde la URL"
+  }}
+</h2>
+<mat-dialog-content>
+  <ng-container *ngFor="let term of listaTerminos">
+    <button mat-button color="primary" (click)="openLink(term)">
+      <mat-label> {{ term.tipo }}</mat-label>
+      <mat-icon>launch</mat-icon>
+    </button>
+  </ng-container>
+  <mat-form-field appearance="outline" floatLabel="always">
+    <mat-label>URL</mat-label>
+    <input
+      matInput
+      type="text"
+      required
+      maxlength="255"
+      [(ngModel)]="video"
+      (change)="onChange_linkVideo()"
+    />
+    <!-- <app-validacion [control]="item.get('url')"></app-validacion> -->
+  </mat-form-field>
+  <div>
+    <h4 class="mat-form-field-label transform-label" style="padding-left: 16px">
+      Vista previa
+    </h4>
+    <div class="iframe-youtube" style="text-align: center">
+      <ng-container *ngIf="linkRecurso != ''; else notResource">
+        <ng-container *ngIf="utilArchivoService.isImage(linkRecurso)">
+          <img class="content-recurso" [src]="linkRecurso | safeUrl" />
+        </ng-container>
+        <ng-container *ngIf="utilArchivoService.isVideo(linkRecurso)">
+          <video controls class="content-recurso">
+            <source
+              [src]="linkRecurso | safeUrl"
+              [type]="utilArchivoService.getExtension(linkRecurso)"
+            />
+          </video>
+        </ng-container>
+        <ng-container *ngIf="utilArchivoService.isYouTube(linkRecurso)">
+          <iframe
+            class="content-recurso"
+            width="360"
+            height="218"
+            [src]="linkRecurso | safeUrl"
+            frameborder="0"
+            allow="autoplay; encrypted-media"
+            allowfullscreen
+          ></iframe>
+        </ng-container>
+      </ng-container>
+      <ng-template #notResource>
+        <nz-upload nzType="drag" [nzDisabled]="true">
+          <mat-icon style="font-size: 48px" class="color-primary">
+            image
+          </mat-icon>
+        </nz-upload>
+      </ng-template>
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancelar</button>
+  <button
+    mat-button
+    [mat-dialog-close]="true"
+    [disabled]="!linkRecurso"
+    cdkFocusInitial
+    (click)="guardar()"
+  >
+    Guardar
+  </button>
+</mat-dialog-actions>

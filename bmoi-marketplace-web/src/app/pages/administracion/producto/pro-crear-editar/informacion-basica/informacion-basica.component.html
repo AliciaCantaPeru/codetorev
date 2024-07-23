@@ -1,0 +1,190 @@
+<form [formGroup]="formGroup">
+  <mat-card class="margin-top-30">
+    <mat-card-content>
+      <h2>Información básica</h2>
+      <div
+        fxLayout="row"
+        fxLayout.md="row"
+        fxLayout.lg="row"
+        fxLayout.sm="column"
+        fxLayoutGap="3%"
+        fxLayoutWrap
+        fxLayoutAlign="center"
+      >
+        <div fxFlex="50%" class="center">
+          <mat-form-field appearance="outline" floatLabel="always">
+            <mat-label>Nombre</mat-label>
+            <input
+              matInput
+              type="text"
+              formControlName="nombrecorto"
+              required
+              appSoloAlfabeto
+            />
+            <app-validacion
+              [control]="auxProService.getControl('nombrecorto')"
+              maxlength="150"
+            ></app-validacion>
+          </mat-form-field>
+        </div>
+        <div fxFlex="50%" class="center">
+          <mat-form-field appearance="outline" floatLabel="always">
+            <mat-label>SKU</mat-label>
+            <input
+              matInput
+              type="text"
+              formControlName="sku"
+              required
+              maxlength="50"
+            />
+            <app-validacion
+              [control]="auxProService.getControl('sku')"
+            ></app-validacion>
+          </mat-form-field>
+        </div>
+      </div>
+      <mat-form-field appearance="outline" floatLabel="always">
+        <mat-label>Titulo</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="titulo"
+          required
+          appSoloAlfabeto
+        />
+        <app-validacion
+          [control]="auxProService.getControl('titulo')"
+          maxlength="150"
+        ></app-validacion>
+      </mat-form-field>
+      <div
+        fxLayout="row"
+        fxLayout.md="row"
+        fxLayout.lg="row"
+        fxLayout.sm="column"
+        fxLayoutGap="3%"
+        fxLayoutWrap
+        fxLayoutAlign="center"
+      >
+        <div fxFlex="50%" class="center">
+          <mat-form-field appearance="outline" floatLabel="always">
+            <mat-label>Marca</mat-label>
+            <mat-select formControlName="idBrand" required>
+              <mat-option
+                *ngFor="let item of generalListaProducto?.listaMarca"
+                [value]="item.id"
+                >{{ item.nombre }}
+              </mat-option>
+            </mat-select>
+            <app-validacion
+              [control]="auxProService.getControl('idBrand')"
+            ></app-validacion>
+          </mat-form-field>
+        </div>
+        <div fxFlex="50%" class="center">
+          <mat-form-field appearance="outline" floatLabel="always">
+            <mat-label>Estado</mat-label>
+            <mat-select formControlName="estado" required>
+              <mat-option
+                *ngFor="let item of listaEstadoProducto"
+                [value]="item.fieldvalue"
+                >{{ item.descripcion }}
+              </mat-option>
+            </mat-select>
+            <app-validacion
+              [control]="auxProService.getControl('estado')"
+            ></app-validacion>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div
+        fxLayout="row"
+        fxLayout.md="row"
+        fxLayout.lg="row"
+        fxLayout.sm="column"
+        fxLayoutGap="3%"
+        fxLayoutWrap
+        fxLayoutAlign="center"
+      >
+        <div fxFlex="50%">
+          <mat-checkbox
+            color="primary"
+            name="recordar"
+            formControlName="personalizable"
+            (change)="changeCheckBox($event)"
+          >
+            Personalizable
+          </mat-checkbox>
+        </div>
+        <div fxFlex="50%">
+          <mat-checkbox
+            color="primary"
+            name="recordar"
+            formControlName="onlinestatus"
+          >
+            Visible en catálogo
+          </mat-checkbox>
+        </div>
+      </div>
+      <div
+        fxLayout="row"
+        fxLayout.md="row"
+        fxLayout.lg="row"
+        fxLayout.sm="column"
+        fxLayoutGap="3%"
+        fxLayoutWrap
+        fxLayoutAlign="center"
+      >
+        <div fxFlex="50%" class="center">
+          <mat-form-field appearance="outline" floatLabel="always">
+            <mat-label>Menú de opciones</mat-label>
+            <mat-select
+              formControlName="codigoMenu"
+              required
+              (ngModelChange)="listarCategoriaMenu($event)"
+            >
+              <mat-option
+                *ngFor="let item of generalListaProducto?.listaMenuOpcion"
+                [value]="item.codigo"
+                >{{ item.nombre }}
+              </mat-option>
+            </mat-select>
+            <app-validacion
+              [control]="auxProService.getControl('codigoMenu')"
+            ></app-validacion>
+          </mat-form-field>
+        </div>
+        <div fxFlex="50%" class="center"></div>
+      </div>
+
+      <div
+        fxLayout="row"
+        fxLayout.md="row"
+        fxLayout.lg="row"
+        fxLayoutGap="3%"
+        fxLayout.sm="column"
+        fxLayoutWrap
+        fxLayoutAlign="center"
+      >
+        <div fxFlex="100%">
+          <h4 class="mat-form-field-label transform-label">Categorías</h4>
+          <perfect-scrollbar
+            style="height: 200px"
+            class="border-input"
+            [config]="{ suppressScrollX: true }"
+          >
+            <vista-c-arbol
+              *ngIf="listaCategoriaArbol?.length > 0"
+              [data]="listaCategoriaArbol"
+              modoSeleccion="checkBox"
+              tipoSeleccion="dependiente"
+              [seleccionUnica]="true"
+              (changeChecked)="emitEquiposchangeChecked($event)"
+            ></vista-c-arbol>
+          </perfect-scrollbar>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</form>

@@ -1,0 +1,103 @@
+<div class="content-login background-black"></div>
+<mat-card class="display-flex">
+  <ng-container *ngIf="!keyInvalid">
+    <mat-card-content *ngIf="!send" class="mg-auto">
+      <img class="img-login" src="assets/img/logo-login.png" />
+      <form [formGroup]="forma" (ngSubmit)="onSubmit()" autocomplete="off">
+        <h1 class="color-primary title">Restablece tu contraseña</h1>
+        <mat-form-field appearance="outline" floatLabel="always">
+          <mat-label>Nueva contraseña</mat-label>
+          <input
+            matInput
+            [type]="!hide1 ? 'password' : 'text'"
+            formControlName="contrasenia"
+            required
+          />
+          <mat-icon matSuffix (click)="hide1 = !hide1" class="cursor">{{
+            hide1 ? "visibility_off" : "visibility"
+          }}</mat-icon>
+          <mat-error *ngIf="forma.get('contrasenia')?.errors?.required">
+            <mat-icon>info</mat-icon> Ingresa 8 o más caracteres con una
+            combinación de minúsculas, mayúsculas, números y símbolos ($@$!%*?&)
+          </mat-error>
+          <mat-error *ngIf="forma.get('contrasenia')?.errors?.pattern">
+            <mat-icon>info</mat-icon> Ingresa 8 o más caracteres con una
+            combinación de minúsculas, mayúsculas, números y símbolos ($@$!%*?&)
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" floatLabel="always">
+          <mat-label>Confirma tu contraseña</mat-label>
+          <input
+            matInput
+            [type]="!hide2 ? 'password' : 'text'"
+            formControlName="contraseniaConfirmacion"
+            required
+            comparar
+          />
+          <mat-icon matSuffix (click)="hide2 = !hide2" class="cursor">
+            {{ hide2 ? "visibility_off" : "visibility" }}</mat-icon
+          >
+          <mat-error
+            *ngIf="forma.get('contraseniaConfirmacion')?.errors?.required"
+          >
+            <mat-icon>info</mat-icon> Confirma tu contraseña
+          </mat-error>
+          <mat-error
+            *ngIf="forma.get('contraseniaConfirmacion')?.errors?.comparar"
+          >
+            <mat-icon>info</mat-icon> La contraseñas no coincide
+          </mat-error>
+        </mat-form-field>
+        <div style="text-align: center; margin-top: 50px">
+          <button
+            type="submit"
+            mat-raised-button
+            color="primary"
+            class="background-purple background-green"
+          >
+            Guardar
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+    <mat-card-content *ngIf="send" style="margin: 100px 50px">
+      <img class="img-mail" src="assets/img/shield.png" />
+      <h1 class="color-primary title">¡Felicitaciones!</h1>
+      <p class="color-secondary center">
+        Tu contraseña ha sido modificada con éxito. Ahora puedes iniciar sesión
+        con tu nueva contraseña.
+      </p>
+      <div style="text-align: center; margin-top: 50px">
+        <button
+          type="button"
+          mat-raised-button
+          color="primary"
+          class="background-purple background-green"
+          [routerLink]="['/login']"
+        >
+          Ingresar a mi cuenta
+        </button>
+      </div>
+    </mat-card-content>
+  </ng-container>
+  <mat-card-content *ngIf="keyInvalid" style="margin: 100px 50px">
+    <div style="text-align: center">
+      <mat-icon style="font-size: 130px; width: auto">privacy_tip</mat-icon>
+    </div>
+    <h1 class="color-primary title">¡Lo sentimos!</h1>
+    <p class="color-secondary center">
+      {{ messageError }}
+    </p>
+    <div style="text-align: center; margin-top: 50px">
+      <button
+        type="button"
+        mat-raised-button
+        color="primary"
+        class="background-purple background-green"
+        [routerLink]="['/login']"
+      >
+        Ingresar a mi cuenta
+      </button>
+    </div>
+  </mat-card-content>
+</mat-card>

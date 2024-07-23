@@ -1,0 +1,32 @@
+<div class="ui-content-drag">
+  <ul class="arbol-content" style="padding: 0" *ngIf="verSeleccionTodos">
+    <li>
+      <div class="ui-seleccionable ui-check-todos">
+        <span
+          [class]="iconoSeleccionTodos"
+          *ngIf="modoSeleccion === 'checkBox'"
+          style="margin-left: 15px"
+          (click)="onClick_toggleSeleccionTodos()"
+        ></span>
+        <span
+          style="white-space: nowrap; width: 100%"
+          (click)="onClick_toggleSeleccionTodos()"
+          >Todos</span
+        >
+      </div>
+    </li>
+  </ul>
+  <ul class="arbol-content" id="arbol-content" *ngIf="!refrescar && data">
+    <vista-item
+      *ngFor="let item of data"
+      [data]="item"
+      [modoSeleccion]="modoSeleccion"
+      [seleccionUnica]="seleccionUnica"
+      (changeChecked)="emitChangeChecked($event)"
+      [tipoSeleccion]="tipoSeleccion"
+      [itemTemplate]="itemTemplate"
+      (itemClick)="emitItemClick($event)"
+    >
+    </vista-item>
+  </ul>
+</div>

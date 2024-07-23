@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <!--<Pattern>%d{dd/MM/yyyy HH:mm:ss.SSS} [%-5level] [%30.30thread] [%30.30logger{0}:%-3line] - %msg%n</Pattern>-->
+            <Pattern>%d{dd/MM/yyyy HH:mm:ss.SSS} [%-5level] [%30.30logger{0}:%-3line] - %msg%n</Pattern>
+        </layout>
+    </appender>
+
+    <timestamp key="myTimestamp" datePattern="yyyy-MM-dd"/>
+
+    <appender name="BACKEND" class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+        <file>/home/ubuntu/ws/logs/bmoi.log</file>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <fileNamePattern>/home/ubuntu/ws/logs/bmoi-${myTimestamp}.%i.zip</fileNamePattern>
+            <minIndex>1</minIndex>
+            <maxIndex>100</maxIndex>
+        </rollingPolicy>
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>100MB</maxFileSize>
+        </triggeringPolicy>
+
+        <encoder>
+            <!--<Pattern>%d{dd/MM/yyyy HH:mm:ss.SSS} [%-5level] [%30.30thread] [%30.30logger{0}:%-3line] - %msg%n</Pattern>-->
+            <Pattern>%d{dd/MM/yyyy HH:mm:ss.SSS} [%-5level] [%30.30logger{0}:%-3line] - %msg%n</Pattern>
+        </encoder>
+    </appender>
+
+    <!--LOCAL-->
+    <springProfile name="dev">
+        <logger name="marketplace" level="INFO" additivity="false">
+            <appender-ref ref="STDOUT" />
+        </logger>
+        <logger name="marketplace.logger.log.LoggingAspect" level="INFO" additivity="false">
+            <appender-ref ref="STDOUT" />
+        </logger>
+        <logger name="org.springframework" level="INFO" additivity="false">
+            <appender-ref ref="STDOUT" />
+        </logger>
+        <logger name="com.arjuna" level="INFO" additivity="false">
+            <appender-ref ref="STDOUT" />
+        </logger>
+        <logger name="org.hibernate" level="INFO" additivity="false">
+            <appender-ref ref="STDOUT" />
+        </logger>
+    </springProfile>
+    
+    <!--PROD-->
+    <springProfile name="prod">
+        <logger name="marketplace" level="ERROR" additivity="false">
+            <appender-ref ref="BACKEND" />
+        </logger>
+        <logger name="marketplace.logger.log.LoggingAspect" level="ERROR" additivity="false">
+            <appender-ref ref="BACKEND" />
+        </logger>
+        <logger name="org.springframework" level="ERROR" additivity="false">
+            <appender-ref ref="BACKEND" />
+        </logger>
+        <logger name="org.hibernate" level="ERROR" additivity="false">
+            <appender-ref ref="BACKEND" />
+        </logger>
+    </springProfile>
+
+</configuration>

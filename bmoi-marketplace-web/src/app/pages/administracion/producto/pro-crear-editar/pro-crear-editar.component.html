@@ -1,0 +1,84 @@
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer class="example-sidenav" mode="side" opened>
+    <mat-selection-list [multiple]="false">
+      <ng-container *ngFor="let seccion of listaSecciones">
+        <mat-list-option
+          (click)="forceNavigate(seccion.id)"
+          [selected]="idSeleccionado == seccion.id"
+          [ngClass]="{
+            'mat-list-single-selected-option': true
+          }"
+        >
+          <div mat-line>{{ seccion.nombre }}</div>
+        </mat-list-option>
+      </ng-container>
+    </mat-selection-list>
+  </mat-drawer>
+  <mat-drawer-content>
+    <!-- <perfect-scrollbar
+      #perfectScroll
+      [config]="{ suppressScrollX: true, speed: 500 }"
+      (psScrollY)="onScroll()"
+    > -->
+    <div class="main-content">
+      <div id="main-content" *ngIf="this.auxProService.formGroup != null">
+        <mat-card class="center">
+          <mat-card-content>
+            <h2>Información sobre el producto</h2>
+          </mat-card-content>
+        </mat-card>
+        <section [id]="1">
+          <app-informacion-basica
+            [generalListaProducto]="generalListaProducto"
+          ></app-informacion-basica>
+        </section>
+        <section [id]="2">
+          <app-descripcion></app-descripcion>
+        </section>
+        <section [id]="3">
+          <app-img-video></app-img-video>
+        </section>
+        <section [id]="4">
+          <app-identificador></app-identificador>
+        </section>
+        <section [id]="5">
+          <app-precios [generalListaProducto]="generalListaProducto">
+          </app-precios>
+        </section>
+        <section [id]="6">
+          <app-variante [generalListaProducto]="generalListaProducto">
+          </app-variante>
+        </section>
+        <section [id]="7">
+          <app-logistica></app-logistica>
+        </section>
+        <section [id]="8">
+          <app-dimension-peso></app-dimension-peso>
+        </section>
+        <section [id]="9">
+          <app-envio></app-envio>
+        </section>
+        <section [id]="10">
+          <app-personalizacion [generalListaProducto]="generalListaProducto">
+          </app-personalizacion>
+        </section>
+        <section [id]="11">
+          <app-img-disenio [generalListaProducto]="generalListaProducto">
+          </app-img-disenio>
+        </section>
+        <section class="margin-top-30" align="end">
+          <mat-dialog-actions align="end">
+            <button mat-button color="primary" (click)="cancelar()">
+              Cancelar
+            </button>
+            <button mat-raised-button color="primary" (click)="guardar()">
+              Guardar
+            </button>
+          </mat-dialog-actions>
+        </section>
+        <div class="margin-top-30"></div>
+      </div>
+    </div>
+    <!-- </perfect-scrollbar> -->
+  </mat-drawer-content>
+</mat-drawer-container>

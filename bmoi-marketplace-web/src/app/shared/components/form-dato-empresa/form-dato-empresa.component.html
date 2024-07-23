@@ -1,0 +1,191 @@
+<form [formGroup]="formGroup" class="center">
+  <mat-form-field
+    appearance="outline"
+    floatLabel="always"
+    placeholder="Postulante"
+  >
+    <mat-label>Postulante</mat-label>
+    <mat-select name="genero" formControlName="idpostulante" required>
+      <mat-option
+        [value]="postulante.id"
+        *ngFor="let postulante of listaPostulante"
+      >
+        {{ postulante.nombre }}
+      </mat-option>
+    </mat-select>
+    <app-validacion [control]="getControl('idpostulante')"></app-validacion>
+  </mat-form-field>
+  <mat-form-field appearance="outline" floatLabel="always">
+    <mat-label>Tipo de empresa</mat-label>
+    <mat-select
+      name="tipEmpresa"
+      required
+      formControlName="tipEmpresa"
+      placeholder="Tipo de empresa"
+    >
+      <mat-option
+        [value]="tipo.fieldvalue"
+        *ngFor="let tipo of listaTipoEmpresas"
+      >
+        {{ tipo.fieldvalue }}
+      </mat-option>
+    </mat-select>
+    <app-validacion [control]="getControl('tipEmpresa')"></app-validacion>
+  </mat-form-field>
+  <mat-form-field appearance="outline" floatLabel="always">
+    <mat-label>Nombre comercial</mat-label>
+    <input
+      matInput
+      type="text"
+      formControlName="nomComercial"
+      required
+      placeholder="Nombre comercial"
+      maxlength="150"
+    />
+    <app-validacion [control]="getControl('nomComercial')"></app-validacion>
+  </mat-form-field>
+  <mat-form-field appearance="outline" floatLabel="always">
+    <mat-label>Razón social</mat-label>
+    <input
+      matInput
+      type="text"
+      placeholder="Razón social"
+      formControlName="razSocial"
+      required
+      maxlength="500"
+    />
+    <app-validacion [control]="getControl('razSocial')"></app-validacion>
+  </mat-form-field>
+  <div class="container" fxLayout="row" fxLayout.sm="column" fxLayoutGap="3%">
+    <div fxFlex="50%" class="center">
+      <mat-form-field appearance="outline" floatLabel="always">
+        <mat-label>Ruc</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="ruc"
+          maxlength="11"
+          appNumber
+        />
+        <app-validacion [control]="getControl('ruc')"></app-validacion>
+      </mat-form-field>
+    </div>
+    <div fxFlex="50%" class="center">
+      <mat-form-field appearance="outline" floatLabel="always">
+        <mat-label>Fecha de inicio actividades</mat-label>
+        <input
+          matInput
+          #MatFeciniActividades
+          [matDatepicker]="picker"
+          formControlName="feciniActividades"
+          (focus)="picker.open()"
+          [max]="maxDate"
+        />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker
+          #picker
+          (closed)="MatFeciniActividades.blur()"
+        ></mat-datepicker>
+        <app-validacion
+          [control]="getControl('feciniActividades')"
+        ></app-validacion>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <mat-form-field appearance="outline" floatLabel="always">
+    <mat-label>Rubro</mat-label>
+    <mat-select
+      name="rubro"
+      required
+      formControlName="rubro"
+      placeholder="Rubro"
+    >
+      <mat-option [value]="tipo.fieldvalue" *ngFor="let tipo of listaRubro">
+        {{ tipo.fieldvalue }}
+      </mat-option>
+    </mat-select>
+    <app-validacion [control]="getControl('rubro')"></app-validacion>
+  </mat-form-field>
+  <div class="container" fxLayout="row" fxLayout.sm="column" fxLayoutGap="3%">
+    <div fxFlex="50%" class="center">
+      <mat-form-field appearance="outline" floatLabel="always">
+        <mat-label>Email 1</mat-label>
+        <input
+          matInput
+          type="text"
+          placeholder="email@dominio.com"
+          formControlName="email1"
+          [email]="true"
+          required
+          maxlength="255"
+        />
+        <app-validacion [control]="getControl('email1')"></app-validacion>
+      </mat-form-field>
+    </div>
+    <div fxFlex="50%" class="center">
+      <mat-form-field appearance="outline" floatLabel="always">
+        <mat-label>Email 2</mat-label>
+        <input
+          matInput
+          type="text"
+          placeholder="email@dominio.com"
+          formControlName="email2"
+          [email]="true"
+          maxlength="255"
+          valueNotEqual
+        />
+        <app-validacion [control]="getControl('email2')"></app-validacion>
+      </mat-form-field>
+    </div>
+  </div>
+  <mat-form-field appearance="outline" floatLabel="always">
+    <mat-label>Página Web</mat-label>
+    <input matInput type="text" formControlName="website" maxlength="255" />
+    <app-validacion [control]="getControl('website')"></app-validacion>
+  </mat-form-field>
+  <div class="container" fxLayout="row" fxLayout.sm="column" fxLayoutGap="3%">
+    <div fxFlex="50%" class="center">
+      <mat-form-field appearance="outline" floatLabel="always">
+        <mat-label>Teléfono</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="telefono"
+          minlength="7"
+          appNumber
+          maxlength="20"
+          required
+        />
+        <app-validacion [control]="getControl('telefono')"></app-validacion>
+      </mat-form-field>
+    </div>
+    <div fxFlex="50%" class="center">
+      <mat-form-field appearance="outline" floatLabel="always">
+        <mat-label>Celular</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="celular"
+          minlength="9"
+          appNumber
+          required
+          maxlength="20"
+        />
+        <app-validacion [control]="getControl('celular')"></app-validacion>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <mat-form-field appearance="outline" floatLabel="always">
+    <mat-label>Descripción del negocio</mat-label>
+    <textarea
+      matInput
+      cdkTextareaAutosize
+      cdkAutosizeMaxRows="10"
+      cdkAutosizeMinRows="5"
+      formControlName="descripcion"
+      maxlength="255"
+    ></textarea>
+  </mat-form-field>
+</form>

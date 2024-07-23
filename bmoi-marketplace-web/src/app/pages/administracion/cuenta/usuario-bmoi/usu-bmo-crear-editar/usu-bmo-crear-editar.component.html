@@ -1,0 +1,91 @@
+<mat-card>
+  <mat-card-header>
+    <h1 *ngIf="permitirModificar">
+      {{ id == -1 ? "Agregar cuenta" : "Modificar cuenta" }}
+    </h1>
+    <h1 *ngIf="!permitirModificar">Cuenta</h1>
+  </mat-card-header>
+
+  <mat-card-content>
+    <mat-tab-group mat-align-tabs="start" dynamicHeight>
+      <mat-tab>
+        <ng-template mat-tab-label> DATOS DE LA CUENTA </ng-template>
+        <form [formGroup]="formGroup" class="center" autocomplete="off">
+          <mat-form-field
+            appearance="outline"
+            floatLabel="always"
+            *ngIf="verCliente"
+          >
+            <mat-label>Seller</mat-label>
+            <mat-select
+              formControlName="idSeller"
+              (valueChange)="listarPersona($event)"
+              required
+            >
+              <mat-option *ngFor="let item of listacliente" [value]="item.id"
+                >{{ item.nombre }}
+              </mat-option>
+            </mat-select>
+            <app-validacion [control]="getControl('idSeller')"></app-validacion>
+          </mat-form-field>
+          <div
+            class="container"
+            fxLayout="row"
+            fxLayout.sm="column"
+            fxLayoutGap="3%"
+          >
+            <div fxFlex="50%" class="center">
+              <mat-form-field appearance="outline" floatLabel="always">
+                <mat-label>Colaborador</mat-label>
+                <mat-select
+                  formControlName="idSellerPersona"
+                  (valueChange)="selectPersona($event)"
+                  required
+                >
+                  <mat-option
+                    *ngFor="let item of listaPersona"
+                    [value]="item.id"
+                    >{{ item.nombre }}
+                  </mat-option>
+                </mat-select>
+                <app-validacion
+                  [control]="getControl('idSellerPersona')"
+                ></app-validacion>
+              </mat-form-field>
+            </div>
+            <div fxFlex="50%" class="center">
+              <mat-form-field appearance="outline" floatLabel="always">
+                <mat-label>Email</mat-label>
+                <input matInput type="text" formControlName="email" required />
+                <app-validacion
+                  [control]="getControl('email')"
+                ></app-validacion>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <mat-form-field appearance="outline" floatLabel="always">
+            <mat-label>Rol</mat-label>
+            <mat-select formControlName="idRol" required>
+              <mat-option *ngFor="let item of listaRol" [value]="item.id">
+                {{ item.nombre }}
+              </mat-option>
+            </mat-select>
+            <app-validacion [control]="getControl('idRol')"></app-validacion>
+          </mat-form-field>
+        </form>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-card-content>
+  <mat-card-actions align="end" style="margin-bottom: 1rem">
+    <button mat-button (click)="cancelar()">Cancelar</button>
+    <button
+      mat-button
+      (click)="guardar()"
+      cdkFocusInitial
+      *ngIf="permitirModificar"
+    >
+      Guardar
+    </button>
+  </mat-card-actions>
+</mat-card>

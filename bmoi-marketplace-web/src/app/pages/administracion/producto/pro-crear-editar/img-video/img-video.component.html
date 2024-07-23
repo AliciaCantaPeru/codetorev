@@ -1,0 +1,64 @@
+<mat-card class="margin-top-30">
+  <mat-card-content>
+    <div
+      fxLayout="row"
+      fxLayout.md="row"
+      fxLayout.lg="row"
+      fxLayout.sm="column"
+      fxLayoutGap="3%"
+      fxLayoutWrap
+    >
+      <div fxFlex="60%">
+        <h2>Imágenes y videos</h2>
+        <h4 class="mat-form-field-label transform-label">
+          Agregue imágenes y videos de su producto para atraer clientes
+        </h4>
+      </div>
+      <div fxFlex="40%" style="text-align: right; padding-top: 10px">
+        <button mat-stroked-button color="primary" (click)="openDialog()">
+          <mat-icon>add</mat-icon>
+          <mat-label>Agregar desde la URL</mat-label>
+        </button>
+        <!-- <button mat-stroked-button color="primary">
+          <mat-icon>cloud_upload</mat-icon>
+          <mat-label>Cargar recurso </mat-label>
+        </button> -->
+      </div>
+    </div>
+    <div class="margin-top-30">
+      <app-upload-file></app-upload-file>
+    </div>
+    <div fxLayout="row" fxLayoutGap="3%" fxLayoutWrap fxLayoutAlign="center">
+      <div fxFlex="100%" class="center">
+        <br />
+        <nz-upload
+          nzType="drag"
+          [nzMultiple]="false"
+          [nzAction]="customUploadReq"
+        >
+          <div fxLayout="row">
+            <div fxFlex="20%">
+              <mat-icon style="font-size: 48px" class="color-primary">
+                image
+              </mat-icon>
+            </div>
+            <div fxFlex="80%" style="text-align: left">
+              <h3>
+                Arrastre y suelte aquí las imágenes o videos para cargarlas.
+              </h3>
+              <h5>o haga clic seleccionar una imagen o video de su equipo.</h5>
+            </div>
+          </div>
+        </nz-upload>
+      </div>
+    </div>
+    <!-- <div fxLayout="row" class="margin-top-30">
+      <div fxFlex="70%">
+        <h2>Videos</h2>
+        <h4 class="mat-form-field-label transform-label">
+          Aun no se han añadido videos
+        </h4>
+      </div>
+    </div> -->
+  </mat-card-content>
+</mat-card>

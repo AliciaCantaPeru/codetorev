@@ -1,0 +1,47 @@
+<li>
+  <div [class]="seleccionable()">
+    <i
+      [class]="obtenerIconoToggle()"
+      aria-hidden="true"
+      [style.visibility]="verIconoDesplegar"
+      (click)="verHijos()"
+    ></i>
+    <span
+      [class]="data.iconoCheck || 'fa fa-square-o'"
+      *ngIf="modoSeleccion === 'checkBox' && !seleccionUnica"
+      (click)="obtenerIconoCheck(1)"
+      (dblclick)="obtenerIconoCheck(2)"
+    ></span>
+    <span
+      [class]="obtenerIcono()"
+      [style.visibility]="verIconoLabel"
+      (click)="obtenerIconoCheck(1)"
+      (dblclick)="obtenerIconoCheck(2)"
+    ></span>
+    <span
+      *ngIf="!itemTemplate"
+      (click)="obtenerIconoCheck(1)"
+      (dblclick)="obtenerIconoCheck(2)"
+      style="white-space: nowrap; width: 100%"
+      [ngStyle]="{ cursor: data?.hijos?.length > 0 ? 'default' : 'pointer' }"
+    >
+      {{ data.label }}
+    </span>
+    <ng-container
+      *ngTemplateOutlet="itemTemplate; context: { $implicit: data }"
+    ></ng-container>
+  </div>
+  <ul *ngIf="listarHijos()">
+    <vista-item
+      *ngFor="let item of data.hijos; let index = index"
+      [data]="item"
+      [indice]="index"
+      (indiceSeleccionado)="emitIndiceSeleccionado($event)"
+      [modoSeleccion]="modoSeleccion"
+      (changeChecked)="emitChangeChecked($event)"
+      [tipoSeleccion]="tipoSeleccion"
+      [itemTemplate]="itemTemplate"
+      (itemClick)="emitItemClick($event)"
+    ></vista-item>
+  </ul>
+</li>

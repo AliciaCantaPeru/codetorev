@@ -1,0 +1,135 @@
+<div style="text-align: right; padding-top: 10px">
+  <button mat-stroked-button color="primary" (click)="openDialog()">
+    <mat-icon>add</mat-icon>
+    <mat-label>Agregar desde la URL</mat-label>
+  </button>
+</div>
+<div>
+  <nz-upload nzType="drag" [nzMultiple]="false" [nzAction]="customUploadReq">
+    <div fxLayout="row">
+      <div fxFlex="20%">
+        <mat-icon style="font-size: 48px" class="color-primary">image</mat-icon>
+      </div>
+      <div fxFlex="80%" style="text-align: left">
+        <h3>Arrastre y suelte aquí las imágenes personalizadas.</h3>
+        <h5>o haga clic seleccionar una imagen de su equipo.</h5>
+      </div>
+    </div>
+  </nz-upload>
+</div>
+<div class="margin-top-30">
+  <div
+    class="container table-input"
+    fxLayout="row"
+    fxLayout.md="row"
+    fxLayout.lg="row"
+    fxLayout.sm="row"
+    fxLayoutWrap
+    fxLayoutAlign="center"
+    *ngIf="auxProService.getFormArray('listaImgPropio').controls.length > 0"
+  >
+    <div fxFlex="10%" class="center">
+      <mat-label>Icon</mat-label>
+    </div>
+    <div fxFlex="20%" class="center">
+      <mat-label>Nombre imágen</mat-label>
+    </div>
+    <div fxFlex="20%" class="center">
+      <mat-label>Menú de diseños</mat-label>
+    </div>
+    <div fxFlex="20%" class="center">
+      <mat-label>Categorias</mat-label>
+    </div>
+    <div fxFlex="20%" class="center">
+      <mat-label>Sub-Categorias</mat-label>
+    </div>
+    <div fxFlex="10%" class="center"></div>
+  </div>
+  <form [formGroup]="formGroup">
+    <ng-container
+      formArrayName="listaImgPropio"
+      *ngFor="
+        let item of auxProService.getFormArray('listaImgPropio').controls;
+        let i = index
+      "
+    >
+      <div
+        class="container table-input"
+        fxLayout="row"
+        fxLayout.md="row"
+        fxLayout.lg="row"
+        fxLayout.sm="row"
+        fxLayoutWrap
+        fxLayoutAlign="center"
+        [formGroupName]="i"
+        *ngIf="item.get('id').value == null"
+      >
+        <div fxFlex="10%" class="center">
+          <img class="pre-img" [src]="item.get('url').value" />
+        </div>
+        <div fxFlex="20%" class="center" style="padding-top: 1.7em">
+          {{ utilArchivoService.getNombre(item.get("url").value) }}
+        </div>
+        <div fxFlex="20%" class="center">
+          <mat-form-field appearance="outline" floatLabel="always">
+            <mat-select
+              required
+              (selectionChange)="listarCategoria($event.value, i)"
+              formControlName="idGrupo"
+            >
+              <mat-option
+                *ngFor="let item of generalListaProducto?.listaMenuDisenio"
+                [value]="item.id"
+                >{{ item.nombre }}
+              </mat-option>
+            </mat-select>
+            <!-- <app-validacion [control]="item.get('idGrupo')"></app-validacion> -->
+          </mat-form-field>
+        </div>
+        <div fxFlex="20%" class="center">
+          <mat-form-field appearance="outline" floatLabel="always">
+            <mat-select
+              formControlName="idCategoria"
+              required
+              (selectionChange)="listarSubcategoria($event.value, i)"
+            >
+              <mat-option
+                *ngFor="let item of getListaCategoria(i)"
+                [value]="item.id"
+                >{{ item.nombre }}
+              </mat-option>
+            </mat-select>
+            <!-- <app-validacion
+              [control]="item.get('idCategoria')"
+            ></app-validacion> -->
+          </mat-form-field>
+        </div>
+        <div fxFlex="20%" class="center">
+          <mat-form-field appearance="outline" floatLabel="always">
+            <mat-select required formControlName="idDigImgSubImg">
+              <mat-option
+                *ngFor="let item of getListaSubcategoria(i)"
+                [value]="item.id"
+                >{{ item.nombre }}
+              </mat-option>
+            </mat-select>
+            <!-- <app-validacion
+              [control]="item.get('idSubcategoria')"
+            ></app-validacion> -->
+          </mat-form-field>
+        </div>
+        <div fxFlex="10%" class="center">
+          <button
+            mat-icon-button
+            color="primary"
+            type="button"
+            style="margin-top: 13px"
+            (click)="remove(i)"
+          >
+            <mat-icon style="margin-top: 0px"> delete </mat-icon>
+          </button>
+        </div>
+      </div>
+    </ng-container>
+  </form>
+</div>

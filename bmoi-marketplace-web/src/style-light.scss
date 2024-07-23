@@ -1,0 +1,78 @@
+$dark-text: #000000;
+$dark-primary-text: rgba($dark-text, 0.87);
+$dark-accent-text: rgba($dark-primary-text, 0.54);
+$dark-disabled-text: rgba($dark-primary-text, 0.38);
+$dark-dividers: rgba($dark-primary-text, 0.12);
+$dark-focused: rgba($dark-primary-text, 0.12);
+
+$mat-light-theme-foreground: (
+  base: black,
+  divider: $dark-dividers,
+  dividers: $dark-dividers,
+  disabled: $dark-disabled-text,
+  disabled-button: rgba($dark-text, 0.26),
+  disabled-text: $dark-disabled-text,
+  elevation: black,
+  secondary-text: $dark-accent-text,
+  hint-text: $dark-disabled-text,
+  accent-text: $dark-accent-text,
+  icon: $dark-accent-text,
+  icons: $dark-accent-text,
+  text: $dark-primary-text,
+  slider-min: $dark-primary-text,
+  slider-off: rgba($dark-text, 0.26),
+  slider-off-active: $dark-disabled-text,
+);
+// Dark bg
+$primary-bg: #f0f3f4;
+$secondary-bg: #9b9b9b;
+$black-bg: #f0f3f4;
+$grey-secon-bg: #676869;
+$warning-bg: #ff4a3d;
+$purple-bg: #676869;
+$bg-bg: #333;
+$green-bg: #39c539;
+$blue-bg: #0e7cfe;
+$relleno-card: #404040;
+$line-input: #7a7a7a;
+
+$pri-gradient-bg: linear-gradient(0deg, #052c54, #052c54, #39c539);
+// Background palette for dark themes.
+$light-background: #eeeeee;
+$light-bg-darker-5: darken($light-background, 5%);
+$light-bg-darker-10: darken($light-background, 10%);
+$light-bg-darker-20: darken($light-background, 20%);
+$light-bg-darker-30: darken($light-background, 30%);
+$light-bg-lighter-5: lighten($light-background, 5%);
+$dark-bg-tooltip: lighten(#333333, 20%);
+$dark-bg-alpha-4: rgba(#333333, 0.04);
+$dark-bg-alpha-12: rgba(#333333, 0.12);
+
+$mat-light-theme-background: (
+  line-input: $line-input,
+  relleno-card: $relleno-card,
+  primary-bg: $primary-bg,
+  warning-bg: $warning-bg,
+  secondary-bg: $secondary-bg,
+  black-bg: $black-bg,
+  grey-secon-bg: $grey-secon-bg,
+  purple-bg: $purple-bg,
+  bg-bg: $bg-bg,
+  green-bg: $green-bg,
+  blue-bg: $blue-bg,
+  pri-gradient-bg: $pri-gradient-bg,
+  background: $light-background,
+  status-bar: $light-bg-darker-20,
+  app-bar: $light-bg-darker-5,
+  hover: $dark-bg-alpha-4,
+  card: $light-bg-lighter-5,
+  dialog: $light-bg-lighter-5,
+  tooltip: $dark-bg-tooltip,
+  disabled-button: $dark-bg-alpha-12,
+  focused-button: $dark-focused,
+  selected-button: $light-bg-darker-20,
+  selected-disabled-button: $light-bg-darker-30,
+  disabled-button-toggle: $light-bg-darker-10,
+  unselected-chip: $light-bg-darker-10,
+  disabled-list-option: $light-bg-darker-10,
+);

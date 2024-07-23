@@ -1,0 +1,71 @@
+<div class="container-lateral">
+  <div class="background-black">
+    <div class="content-logo">
+      <img src="/assets/img/logo-login.png" alt="" />
+    </div>
+    <div style="margin-left: 16px" class="margin-top-30">
+      <h2 class="background-black">
+        {{ autenticacionService?.getCurrentUser()?.empresa }}
+      </h2>
+      <h4 class="background-black">
+        {{ autenticacionService?.getCurrentUser()?.plan }}
+      </h4>
+    </div>
+    <mat-selection-list [multiple]="false">
+      <mat-list-option>
+        <mat-icon matListIcon>storefront</mat-icon>
+        <div mat-line>Ver Tienda</div>
+      </mat-list-option>
+      <mat-list-option>
+        <mat-icon matListIcon>home</mat-icon>
+        <div mat-line>Home</div>
+      </mat-list-option>
+      <mat-list-option>
+        <mat-icon matListIcon>search</mat-icon>
+        <div mat-line>Buscar</div>
+      </mat-list-option>
+    </mat-selection-list>
+  </div>
+  <div class="background-green sub-menu">
+    <mat-selection-list [multiple]="false">
+      <ng-container *ngFor="let item of menu">
+        <mat-list-option (click)="navegar(item)">
+          <!-- [ngClass]="{
+            'color-purple': item.route && router.isActive(item.route, false)
+          }" -->
+
+          <mat-icon matListIcon *ngIf="item.icon">{{ item.icon }}</mat-icon>
+          <mat-icon
+            *ngIf="item.svgIcon"
+            matListIcon
+            aria-hidden="false"
+            [svgIcon]="item.svgIcon"
+          ></mat-icon>
+          <div mat-line>{{ item.title }}</div>
+        </mat-list-option>
+        <ng-container *ngIf="item.close">
+          <ng-container *ngFor="let children of item.children">
+            <mat-list-option
+              *ngIf="!children.ocultar"
+              (click)="navegar(children)"
+              [ngClass]="{
+                'color-purple':
+                  children.route && router.isActive(children.route, false)
+              }"
+            >
+              <mat-icon matListIcon *ngIf="children.icon">
+                {{ children.icon }}
+              </mat-icon>
+              <mat-icon
+                matListIcon
+                aria-hidden="false"
+                [svgIcon]="children.svgIcon"
+              ></mat-icon>
+              <div mat-line>{{ children.title }}</div>
+            </mat-list-option>
+          </ng-container>
+        </ng-container>
+      </ng-container>
+    </mat-selection-list>
+  </div>
+</div>

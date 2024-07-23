@@ -1,0 +1,13 @@
+<ng-container *ngFor="let img of listaImagenes; let i = index">
+  <div *ngIf="i == paginaActual" [@flyInOut]="'in'">
+    <img
+      [src]="img.urlpath"
+      style="width: 100%; height: auto; max-height: 600px"
+    />
+    <div style="position: absolute; top: 0; left: 0; right: 0">
+      <h1 [innerHTML]="img.titulo1 | safeHtml"></h1>
+      <h2 [innerHTML]="img.titulo2 | safeHtml"></h2>
+      <p [innerHTML]="img.titulo3 | safeHtml"></p>
+    </div>
+  </div>
+</ng-container>

@@ -1,0 +1,36 @@
+<button mat-icon-button [matMenuTriggerFor]="menu">
+  <mat-icon>more_horiz</mat-icon>
+</button>
+<mat-menu #menu="matMenu">
+  <button
+    mat-menu-item
+    (click)="descargarReporte()"
+    *ngIf="verDescargar && permitirModificar && !permisoEspecialEditar"
+  >
+    <mat-icon>sim_card_download</mat-icon> <span>Descargar</span>
+  </button>
+  <button mat-menu-item (click)="abrirCrearEditarDialogo()" *ngIf="verEditar">
+    <mat-icon>text_snippet</mat-icon>
+    <span *ngIf="textoModificar == null">{{
+      permitirModificar || permisoEspecialEditar ? "Modificar" : "Ver"
+    }}</span>
+    <span *ngIf="textoModificar !== null">Ver </span>
+  </button>
+  <button
+    mat-menu-item
+    (click)="finalizarSolicitud()"
+    *ngIf="verFinalizar && permitirModificar"
+  >
+    <mat-icon>pin_end</mat-icon> <span>Cerrar</span>
+  </button>
+  <button
+    mat-menu-item
+    (click)="confirmarEliminar()"
+    *ngIf="
+      (verEliminar && permitirModificar) ||
+      (permisoEspecialEditar && !esDispositivo)
+    "
+  >
+    <mat-icon>delete</mat-icon> <span>Eliminar</span>
+  </button>
+</mat-menu>

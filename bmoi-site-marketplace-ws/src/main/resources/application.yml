@@ -1,0 +1,58 @@
+## YAML Template.
+## YAML Template.
+spring:
+    profiles:
+        active: dev
+---
+spring:
+    application:
+        name: iot-soluciones
+    jpa:
+        show-sql: true   
+        properties:
+#            hibernate.enable_lazy_load_no_trans: true
+            hibernate.format_sql: true  
+            hibernate.temp.use_jdbc_metadata_defaults: false
+            hibernate.default_schema: public
+        database-platform: org.hibernate.dialect.PostgreSQLDialect 
+    datasource:
+        url: url_db
+        username: USERNAME
+        password: PASSWORD
+        driver-class-name: org.postgresql.Driver        
+    jackson:
+        serialization:
+            write-dates-as-timestamps: false
+        date-format: yyyy-MM-dd
+        default-property-inclusion: non_null 
+    mvc:
+        throw-exception-if-no-handler-found: true
+    resources:
+        add-mappings: false
+    http:
+        multipart:
+            max-file-size: 0
+            max-request-size: 0
+            enabled: true
+    servlet:
+        multipart:
+            max-file-size: 50MB
+            max-request-size: 50MB
+security:
+    url-permit-all: /**
+    secret-key: sk-iot-$s3ns0r
+    expire-time: 60
+    require-ssl: true     
+server:
+    port: 7000
+version: 1.0.1
+amazonProperties: 
+
+    region: us-east-2 
+plantilla:
+    solicitud: /plantilla/solicitud.jasper
+    consumo: ./plantilla/reporte-consumo.jrxml
+color:
+    alarma: a4b0be,ff4757,ff4757,ff4757,ff4757 
+    bateria: 2ed573,a4b0be,a4b0be,e1b12c,e1b12c  
+# plomo #a4b0be,  red  #ff4757, greem  #2ed573, yellow  #e1b12c

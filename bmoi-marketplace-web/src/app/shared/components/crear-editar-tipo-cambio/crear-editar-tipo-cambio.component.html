@@ -1,0 +1,65 @@
+<h1 mat-dialog-title>
+  {{ data?.id == null ? "AGREGAR TIPO CAMBIO" : "EDITAR TIPO CAMBIO" }}
+</h1>
+
+<mat-divider></mat-divider>
+
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="formGroup">
+    <mat-form-field
+      appearance="outline"
+      floatLabel="always"
+      floatLabel="always"
+    >
+      <mat-label>Moneda</mat-label>
+      <mat-select formControlName="moneda" required>
+        <mat-option *ngFor="let item of listaTipoMoneda" [value]="item.valor"
+          >{{ item.valor }}
+        </mat-option>
+      </mat-select>
+      <app-validacion [control]="getControl('moneda')"></app-validacion>
+    </mat-form-field>
+    <mat-form-field
+      appearance="outline"
+      floatLabel="always"
+      floatLabel="always"
+    >
+      <mat-label>Valor compra</mat-label>
+      <input
+        matInput
+        type="text"
+        formControlName="valCompra"
+        appDecimal
+        required
+      />
+      <app-validacion [control]="getControl('valCompra')"></app-validacion>
+    </mat-form-field>
+
+    <mat-form-field
+      appearance="outline"
+      floatLabel="always"
+      floatLabel="always"
+    >
+      <mat-label>Valor venta moneda</mat-label>
+      <input
+        matInput
+        type="text"
+        formControlName="valVenta"
+        appDecimal
+        required
+      />
+      <app-validacion [control]="getControl('valVenta')"></app-validacion>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="dialogRef.close(null)">Cancelar</button>
+  <button
+    mat-button
+    (click)="guardar()"
+    cdkFocusInitial
+    *ngIf="permitirModificar"
+  >
+    Guardar
+  </button>
+</mat-dialog-actions>

@@ -1,0 +1,113 @@
+<mat-card class="center margin-top-30">
+  <mat-card-content>
+    <h2>Personalización</h2>
+    <h4>
+      Agregue los componentes para facilitar la perzonalización del producto.
+    </h4>
+  </mat-card-content>
+</mat-card>
+<mat-card class="margin-top-30">
+  <mat-card-content>
+    <h2>Tipos de personalización</h2>
+    <p>
+      Agregue los tipos de personalización que el cliente pueda personalizar.
+      Estos tipos se visualizaran a los clientes para facilitar la segmentación
+      de las creación de su producto personalizado.
+    </p>
+    <div
+      class="container"
+      fxLayout="row"
+      fxLayout.md="row"
+      fxLayout.lg="row"
+      fxLayout.sm="row"
+      fxLayoutGap="3%"
+      fxLayoutWrap
+      fxLayoutGap="3%"
+      fxLayoutAlign="center"
+      *ngIf="
+        auxProService.getFormArray('listaPersonalizacion').controls.length > 0
+      "
+    >
+      <div fxFlex="30%" class="center">
+        <mat-label>Tipo</mat-label>
+      </div>
+      <div fxFlex="60%" class="center">
+        <mat-label>Descripción</mat-label>
+      </div>
+      <div fxFlex="10%" class="center"></div>
+    </div>
+    <form [formGroup]="formGroup">
+      <ng-container
+        formArrayName="listaPersonalizacion"
+        *ngFor="
+          let item of auxProService.getFormArray('listaPersonalizacion')
+            .controls;
+          let i = index
+        "
+      >
+        <div
+          class="container table-input"
+          fxLayout="row"
+          fxLayout.md="row"
+          fxLayout.lg="row"
+          fxLayout.sm="row"
+          fxLayoutGap="3%"
+          fxLayoutWrap
+          fxLayoutGap="3%"
+          fxLayoutAlign="center"
+          [formGroupName]="i"
+        >
+          <div fxFlex="30%" class="center">
+            <mat-form-field appearance="outline" floatLabel="always">
+              <mat-select
+                required
+                formControlName="idDigtipopersonalizacion"
+                placeholder="Tipo"
+              >
+                <mat-option
+                  *ngFor="let item of obtenerListaPersonalizacion(i)"
+                  [value]="item.id"
+                  >{{ item.nombre }}
+                </mat-option>
+              </mat-select>
+              <!-- <app-validacion
+                [control]="item.get('idDigtipopersonalizacion')"
+              ></app-validacion> -->
+            </mat-form-field>
+          </div>
+          <div fxFlex="60%" class="center">
+            <mat-form-field appearance="outline" floatLabel="always">
+              <input matInput type="text" disabled />
+              <span matPrefix>
+                &nbsp;
+                {{ personalizacion(item) }}
+              </span>
+            </mat-form-field>
+          </div>
+          <div fxFlex="10%" class="center">
+            <button
+              mat-icon-button
+              color="primary"
+              type="button"
+              style="margin-top: -10px"
+              (click)="remove(i)"
+              *ngIf="
+                (i == 0 &&
+                  auxProService.getControl('personalizable').value == false) ||
+                i > 0
+              "
+            >
+              <mat-icon style="margin-top: 0px"> delete </mat-icon>
+            </button>
+          </div>
+        </div>
+      </ng-container>
+      <div style="text-align: right" class="margin-top-30">
+        <button mat-button type="submit" (click)="add()">
+          <mat-icon>add</mat-icon>
+          <mat-label> Agregar tipo </mat-label>
+        </button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

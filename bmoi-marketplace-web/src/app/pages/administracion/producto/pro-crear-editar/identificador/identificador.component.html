@@ -1,0 +1,52 @@
+<form [formGroup]="formGroup">
+  <mat-card class="margin-top-30">
+    <mat-card-content>
+      <h2>Identificadores de productos</h2>
+      <div
+        fxLayout="row"
+        fxLayout.md="row"
+        fxLayout.lg="row"
+        fxLayout.sm="column"
+        fxLayoutGap="3%"
+        fxLayoutWrap
+        fxLayoutAlign="center"
+      >
+        <div fxFlex="50%" class="center">
+          <mat-form-field appearance="outline" floatLabel="always">
+            <mat-label>SKU</mat-label>
+            <input
+              matInput
+              type="text"
+              formControlName="sku"
+              required
+              appSoloAlfabeto
+            />
+            <app-validacion
+              [control]="auxProService.getControl('sku')"
+              maxlength="150"
+            ></app-validacion>
+          </mat-form-field>
+        </div>
+        <div fxFlex="50%" class="center">
+          <mat-form-field appearance="outline" floatLabel="always">
+            <mat-label>SKU Padre (Opcional)</mat-label>
+            <mat-select
+              formControlName="idPrdpadre"
+              placeholder="SKU Padre (Opcional)"
+            >
+              <mat-option
+                *ngFor="let item of generalListaProducto?.listaProductoPadre"
+                [value]="item.id"
+              >
+                {{ item.nombre }}
+              </mat-option>
+            </mat-select>
+            <app-validacion
+              [control]="auxProService.getControl('idPrdpadre')"
+            ></app-validacion>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</form>

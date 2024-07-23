@@ -1,0 +1,35 @@
+img {
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.blank-grow {
+  flex: 1 1 auto;
+}
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+mat-toolbar {
+  position: fixed;
+  top: 0;
+  z-index: 1;
+}
+
+.container {
+  top: 64px;
+  position: absolute;
+  height: 92vh;
+  width: 100%;
+}
+
+.padding-30 {
+  padding: 30px;
+  background: #ededed;
+}
+
+.mat-form-field-label {
+  display: inherit !important;
+}

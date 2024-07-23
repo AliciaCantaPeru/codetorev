@@ -1,0 +1,24 @@
+export const ROL_MASTER = 1;
+export const ROL_ADMIN = 2;
+export const ROL_CONSULTOR = 3;
+export const ROL_REPORTES = 4;
+export const ROL_CLIENTE = 5;
+export const ROL_INVITADO = 6;
+
+export const ALL_ROL = [
+  ROL_MASTER,
+  ROL_ADMIN,
+  ROL_CONSULTOR,
+  ROL_REPORTES,
+  ROL_CLIENTE,
+  ROL_INVITADO,
+];
+
+export const ROL = {
+  ROL_MASTER: ROL_MASTER,
+  ROL_ADMIN: ROL_ADMIN,
+  ROL_CONSULTOR: ROL_CONSULTOR,
+  ROL_REPORTES: ROL_REPORTES,
+  ROL_CLIENTE: ROL_CLIENTE,
+  ROL_INVITADO: ROL_INVITADO,
+};

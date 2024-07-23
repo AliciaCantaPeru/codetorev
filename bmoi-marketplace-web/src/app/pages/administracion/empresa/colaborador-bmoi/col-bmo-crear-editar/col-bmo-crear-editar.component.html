@@ -1,0 +1,34 @@
+<mat-card>
+  <mat-card-header>
+    <h1 *ngIf="permitirModificar">
+      {{ id == null ? "Agregar colaborador" : "Modificar colaborador" }}
+    </h1>
+    <h1 *ngIf="!permitirModificar">Colaborador</h1>
+  </mat-card-header>
+
+  <mat-card-content>
+    <mat-tab-group mat-align-tabs="start" dynamicHeight>
+      <mat-tab>
+        <ng-template mat-tab-label> DATOS DEL COLABORADOR </ng-template>
+        <div class="margin-top-30">
+          <app-img-view-upload
+            [image]="foto"
+            (imageChange)="imagenChange($event)"
+          ></app-img-view-upload>
+        </div>
+        <app-form-contacto [tipo]="2"></app-form-contacto>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-card-content>
+  <mat-card-actions align="end" style="margin-bottom: 1rem">
+    <button mat-button (click)="cancelar()">Cancelar</button>
+    <button
+      mat-button
+      (click)="guardar()"
+      cdkFocusInitial
+      *ngIf="permitirModificar"
+    >
+      Guardar
+    </button>
+  </mat-card-actions>
+</mat-card>

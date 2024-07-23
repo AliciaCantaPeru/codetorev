@@ -1,0 +1,24 @@
+<div class="body-dialog">
+  <h1 class="center">{{ data.titulo }}</h1>
+  <p style="margin-top: 20px" class="center">{{ data.descripcion }}</p>
+  <div class="container" fxLayout="row" style="margin-top: 25px">
+    <div [fxFlex]="!data.ocultarCancelar ? '100%' : '0%'" class="center">
+      <button
+        mat-button
+        (click)="dialogRef.close(false)"
+        *ngIf="!data.ocultarCancelar"
+      >
+        <mat-label>Cancelar</mat-label>
+      </button>
+    </div>
+    <div [fxFlex]="data.ocultarCancelar ? '100%' : '50%'" class="center">
+      <button
+        mat-button
+        class="background-green"
+        (click)="dialogRef.close(true)"
+      >
+        {{ data.labelOk }}
+      </button>
+    </div>
+  </div>
+</div>

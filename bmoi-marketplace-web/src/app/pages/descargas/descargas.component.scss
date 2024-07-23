@@ -1,0 +1,34 @@
+.appstores {
+  background: url("/assets/img/footer_appstore.png") no-repeat;
+}
+.googleplay {
+  background: url("/assets/img/footer_googleplay.png") no-repeat;
+}
+
+.appcontent {
+  width: 220px;
+  height: 75px;
+  background-size: 100% auto;
+  text-align: left;
+  display: inline-block;
+  text-indent: -9999px;
+}
+
+.h1-titulo {
+  color: #000000 !important;
+}
+
+li {
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+.info-app {
+  align-self: center;
+}
+p {
+  margin: 1em;
+}
+ul {
+  margin: auto;
+}

@@ -1,0 +1,54 @@
+<div
+  class="margin-top-30"
+  fxLayout="column"
+  fxLayout.md="row wrap"
+  fxLayout.lg="row wrap"
+  fxLayout.sm="row wrap"
+  fxLayoutWrap
+  fxLayoutAlign="center center"
+>
+  <div fxFlex="0" *ngFor="let producto of listaProductos" style="height: 450px">
+    <mat-card class="prod-card">
+      <div class="color-secondary">
+        <button
+          [disabled]="autenticacionService.getCurrentUser().idSeller == null"
+          mat-icon-button
+          [style.color]="producto?.onlinestatus == 1 ? '#f06048' : ''"
+          (click)="changeVer(producto)"
+          [matTooltip]="
+            producto?.onlinestatus == 1
+              ? 'Ocultar este producto a los compradores'
+              : 'Hacer que este producto este visible para los compradores'
+          "
+        >
+          <mat-icon>{{
+            producto?.onlinestatus == 1 ? "visibility_off" : "visibility"
+          }}</mat-icon>
+        </button>
+        <button
+          style="float: right"
+          [disabled]="autenticacionService.getCurrentUser().idSeller == null"
+          [color]="producto?.destacado == 1 ? 'primary' : ''"
+          mat-icon-button
+          (click)="changeDestacar(producto)"
+          [matTooltip]="
+            producto?.destacado == 1
+              ? 'Mostrar como  producto no destacado'
+              : 'Mostrar como producto destacado en la tienda'
+          "
+        >
+          <mat-icon>{{
+            producto?.destacado == 1 ? "star" : "star_border"
+          }}</mat-icon>
+        </button>
+      </div>
+      <img mat-card-image [src]="producto.multimedia1" />
+      <mat-card-content>
+        <p class="color-blue-bg" style="margin-bottom: 0">
+          {{ producto.nombrecorto }}
+        </p>
+        <p>S/. {{ producto.preciobasico }}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

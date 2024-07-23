@@ -1,0 +1,27 @@
+<h2 mat-dialog-title class="center">
+  {{ data?.titulo }}
+</h2>
+<mat-divider></mat-divider>
+<mat-dialog-content>
+  <div fxLayout="row wrap" fxLayoutGap="3%" fxLayoutWrap fxLayoutAlign="center">
+    <div fxFlex="22%" class="center" *ngFor="let img of data?.listaImagenes">
+      <mat-card style="margin: 1.1em">
+        <img mat-card-image [src]="img.url" class="visor-img" />
+        <label for="">{{ utilArchivoService.getNombre(img.url) }}</label>
+        <mat-icon class="visor-img-check">
+          {{ img.estado ? "check_box" : "check_box_outline_blank" }}
+        </mat-icon>
+        <div
+          class="visor-img-select"
+          [ngClass]="{ 'visor-img-select-hover': img.estado }"
+          (click)="seleccionarImagen(img)"
+        ></div>
+      </mat-card>
+    </div>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end" style="">
+  <button mat-button (click)="dialogRef.close(null)">Cancelar</button>
+  <button mat-button (click)="guardar()" cdkFocusInitial>Guardar</button>
+</mat-dialog-actions>

@@ -1,0 +1,112 @@
+<div class="option">
+  <button
+    mat-stroked-button
+    color="primary"
+    (click)="agregar.emit()"
+    *ngIf="verAgregar && conPermisos"
+  >
+    <mat-icon>add_circle</mat-icon>
+    <mat-label>Agregar</mat-label>
+  </button>
+  <button
+    mat-stroked-button
+    color="primary"
+    (click)="eliminarEmit()"
+    *ngIf="verEliminar && conPermisos"
+  >
+    <mat-icon>delete </mat-icon>
+  </button>
+  <mat-form-field appearance="outline" floatLabel="always">
+    <!-- <mat-label class="color-primary">Buscar</mat-label> -->
+    <input matInput placeholder="Buscar" value="" (keyup)="filtrar($event)" />
+    <mat-icon matSuffix>filter_list</mat-icon>
+  </mat-form-field>
+  <div class="option-column">
+    <div>
+      <button
+        mat-icon-button
+        [matMenuTriggerFor]="menu"
+        aria-label="Ver ocultar columnas"
+        class="color-secondary"
+      >
+        <mat-icon>view_column</mat-icon>
+      </button>
+      <!-- <button
+        mat-icon-button
+        class="color-secondary"
+        (click)="changeViewDisplay(1)"
+      >
+        <mat-icon>panorama_wide_angle_select</mat-icon>
+      </button> -->
+      <ng-container *ngIf="multiView">
+        <button
+          mat-icon-button
+          class="color-secondary"
+          (click)="changeViewDisplay(1)"
+        >
+          <mat-icon>table_rows</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          class="color-secondary"
+          (click)="changeViewDisplay(2)"
+        >
+          <mat-icon>apps</mat-icon>
+        </button>
+      </ng-container>
+      <mat-menu #menu="matMenu" color="primary">
+        <ng-container *ngFor="let item of selectColumns; let i = index">
+          <mat-checkbox
+            [(ngModel)]="item.checked"
+            color="primary"
+            appNoClose
+            (change)="getDisplayColumns()"
+          >
+            {{ item.label }}
+          </mat-checkbox>
+        </ng-container>
+      </mat-menu>
+    </div>
+    <mat-divider [vertical]="true"></mat-divider>
+    <div style="margin-top: 7px">
+      <button
+        mat-button
+        [matMenuTriggerFor]="menuPagination"
+        class="color-secondary"
+      >
+        <span>Vista {{ countItem }}</span>
+        <mat-icon>expand_more</mat-icon>
+      </button>
+      <mat-menu #menuPagination="matMenu">
+        <button
+          mat-menu-item
+          (click)="changeItemPaginate(20)"
+          class="color-secondary"
+        >
+          <span> 20</span>
+        </button>
+        <button
+          mat-menu-item
+          (click)="changeItemPaginate(50)"
+          class="color-secondary"
+        >
+          <span> 50</span>
+        </button>
+        <button
+          mat-menu-item
+          (click)="changeItemPaginate(100)"
+          class="color-secondary"
+        >
+          <span> 100</span>
+        </button>
+        <button
+          mat-menu-item
+          (click)="changeItemPaginate(300)"
+          class="color-secondary"
+        >
+          <span> 300</span>
+        </button>
+      </mat-menu>
+    </div>
+  </div>
+</div>

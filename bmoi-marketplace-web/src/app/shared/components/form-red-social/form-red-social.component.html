@@ -1,0 +1,65 @@
+<form [formGroup]="formGroup">
+  <ng-container
+    formArrayName="redes"
+    *ngFor="let item of getFormArray().controls; let i = index"
+  >
+    <div
+      class="container"
+      fxLayout="row"
+      fxLayout.md="row"
+      fxLayout.lg="row"
+      fxLayout.sm="column"
+      fxLayoutGap="3%"
+      fxLayoutWrap
+      fxLayoutGap="3%"
+      fxLayoutAlign="center"
+      [formGroupName]="i"
+    >
+      <div fxFlex="20%" class="center">
+        <mat-form-field appearance="outline" floatLabel="always">
+          <mat-label>Red Social</mat-label>
+          <mat-select required formControlName="nombre">
+            <mat-option *ngFor="let red of listaRedes" [value]="red.fieldvalue"
+              >{{ red.fieldvalue }}
+            </mat-option>
+          </mat-select>
+          <app-validacion [control]="item.get('nombre')"></app-validacion>
+        </mat-form-field>
+      </div>
+      <div fxFlex="70%" class="center">
+        <mat-form-field appearance="outline" floatLabel="always">
+          <mat-label>Enlace</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="url"
+            required
+            maxlength="255"
+          />
+          <app-validacion [control]="item.get('url')"></app-validacion>
+        </mat-form-field>
+      </div>
+      <div fxFlex="10%" class="center" *ngIf="!esPerfil && permitirModificar">
+        <button
+          mat-icon-button
+          color="primary"
+          type="button"
+          *ngIf="i !== 0"
+          (click)="quitarRedSocial(i)"
+        >
+          <mat-icon> delete </mat-icon>
+        </button>
+      </div>
+    </div>
+  </ng-container>
+  <button
+    mat-button
+    color="primary"
+    class="frig"
+    type="submit"
+    (click)="agregarRedSocial()"
+    *ngIf="!esPerfil && permitirModificar"
+  >
+    <mat-label> Agregar red social </mat-label>
+  </button>
+</form>

@@ -1,0 +1,32 @@
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer class="example-sidenav" mode="side" opened>
+    <app-app-menu (changeTitle)="changeTitle($event, drawer)"></app-app-menu>
+  </mat-drawer>
+  <mat-drawer-content>
+    <div class="container">
+      <div class="example-mat-toolbar">
+        <app-toolbar-principal
+          [drawer]="drawer"
+          [diasRestante]="diasRestante"
+          (onSetTheme)="onSetTheme($event)"
+        ></app-toolbar-principal>
+      </div>
+      <div class="example-content">
+        <!-- <perfect-scrollbar [config]="configData"> -->
+        <div class="example-router-outlet">
+          <router-outlet></router-outlet>
+        </div>
+        <!-- </perfect-scrollbar> -->
+      </div>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>
+<div class="container-loading" *ngIf="loading | async">
+  <mat-spinner></mat-spinner>
+</div>
+<!-- <div style="position: absolute; z-index: 999999">
+  <button style="float: right" (click)="onSetTheme('theme-light')">dark</button>
+  <button style="float: right" (click)="onSetTheme('theme-alternate')">
+    ligh
+  </button>
+</div> -->

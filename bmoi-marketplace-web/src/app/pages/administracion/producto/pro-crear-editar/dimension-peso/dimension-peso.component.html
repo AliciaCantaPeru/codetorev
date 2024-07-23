@@ -1,0 +1,86 @@
+<form [formGroup]="auxProService.getControl('dimension')">
+  <mat-card class="margin-top-30">
+    <mat-card-content>
+      <h2>Dimensiones y peso</h2>
+      <p>
+        Ingrese las dimensiones y peso de este producto para facilitar el
+        cálculo de la tarifa de envío. Estas medidas son pertinentes para saber
+        el tamaño del contenedor de envío para el producto. Se utilizan para
+        facilitar el cálculo del precio del envío y no se muestra en su
+        escaparate.
+      </p>
+      <div
+        class="margin-top-30"
+        fxLayout="row"
+        fxLayout.md="row"
+        fxLayout.lg="row"
+        fxLayout.sm="column"
+        fxLayoutGap="3%"
+        fxLayoutWrap
+        fxLayoutAlign="center"
+      >
+        <div fxFlex="50%" class="center">
+          <mat-form-field appearance="outline" floatLabel="always">
+            <mat-label>Peso (KGS)</mat-label>
+            <input
+              matInput
+              type="text"
+              formControlName="peso"
+              required
+              appDecimal
+            />
+            <app-validacion
+              [control]="auxProService.getControlChild('dimension', 'peso')"
+              maxlength="150"
+            ></app-validacion>
+          </mat-form-field>
+        </div>
+        <div fxFlex="50%" class="center">
+          <mat-form-field appearance="outline" floatLabel="always">
+            <mat-label>Ancho (centímetros)</mat-label>
+            <input matInput type="text" formControlName="anchura" appDecimal />
+            <app-validacion
+              [control]="auxProService.getControlChild('dimension', 'anchura')"
+            ></app-validacion>
+          </mat-form-field>
+        </div>
+      </div>
+      <div
+        fxLayout="row"
+        fxLayout.md="row"
+        fxLayout.lg="row"
+        fxLayout.sm="column"
+        fxLayoutGap="3%"
+        fxLayoutWrap
+        fxLayoutAlign="center"
+      >
+        <div fxFlex="50%" class="center">
+          <mat-form-field appearance="outline" floatLabel="always">
+            <mat-label>Altura (centímetros)</mat-label>
+            <input matInput type="text" formControlName="altura" appDecimal />
+            <app-validacion
+              [control]="auxProService.getControlChild('dimension', 'altura')"
+              maxlength="150"
+            ></app-validacion>
+          </mat-form-field>
+        </div>
+        <div fxFlex="50%" class="center">
+          <mat-form-field appearance="outline" floatLabel="always">
+            <mat-label>Profundidad (centímetros)</mat-label>
+            <input
+              matInput
+              type="text"
+              formControlName="profundida"
+              appDecimal
+            />
+            <app-validacion
+              [control]="
+                auxProService.getControlChild('dimension', 'profundida')
+              "
+            ></app-validacion>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</form>

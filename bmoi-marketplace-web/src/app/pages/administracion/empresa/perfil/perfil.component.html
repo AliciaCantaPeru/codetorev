@@ -1,0 +1,26 @@
+<mat-card>
+  <mat-card-content>
+    <app-img-view-upload
+      [image]="foto"
+      [editable]="false"
+    ></app-img-view-upload>
+    <mat-tab-group mat-align-tabs="start" dynamicHeight>
+      <mat-tab>
+        <ng-template mat-tab-label> DATOS DE LA EMPRESA </ng-template>
+        <app-form-dato-empresa></app-form-dato-empresa>
+      </mat-tab>
+      <mat-tab>
+        <ng-template mat-tab-label> DATOS DE CONTACTO </ng-template>
+        <app-form-contacto [esPerfil]="true" [tipo]="tipo"></app-form-contacto>
+      </mat-tab>
+      <mat-tab>
+        <ng-template mat-tab-label> REDES SOCIALES </ng-template>
+        <app-form-red-social [esPerfil]="true"></app-form-red-social>
+      </mat-tab>
+      <mat-tab>
+        <ng-template mat-tab-label> DIRECCIÓN </ng-template>
+        <app-form-direccion></app-form-direccion>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-card-content>
+</mat-card>

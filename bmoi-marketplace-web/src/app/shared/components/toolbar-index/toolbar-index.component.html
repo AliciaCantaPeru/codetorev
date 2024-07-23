@@ -1,0 +1,29 @@
+<mat-toolbar class="background-black">
+  <img src="/assets/img/logo-login.png" (click)="irIndex()" />
+  <button mat-button>
+    <mat-label>¿Quienes Somos?</mat-label>
+  </button>
+  <button mat-button>
+    <mat-label>Seller en BMOI ?</mat-label>
+  </button>
+  <button mat-button>
+    <mat-label>Contáctanos</mat-label>
+  </button>
+  <button mat-button>
+    <mat-label>Planes</mat-label>
+  </button>
+  <button mat-button (click)="idDescargas()">
+    <mat-label>Descargas</mat-label>
+  </button>
+  <span class="example-spacer"></span>
+  <button mat-button class="color-ambar" (click)="irLogin()">
+    <mat-label>Iniciar Sesión</mat-label>
+  </button>
+  <button mat-button class="background-green">
+    <mat-label>Postular</mat-label>
+  </button>
+</mat-toolbar>
+
+<div class="container">
+  <ng-content select="[body]"></ng-content>
+</div>

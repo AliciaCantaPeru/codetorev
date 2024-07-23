@@ -1,0 +1,14 @@
+h1 {
+  text-align: left;
+}
+::ng-deep {
+  .ant-upload-list {
+    display: none;
+  }
+}
+h2 {
+  margin: 0;
+}
+.margin {
+  margin: 10px 0;
+}

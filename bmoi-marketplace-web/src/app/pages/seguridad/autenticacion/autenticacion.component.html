@@ -1,0 +1,90 @@
+<mat-card class="background-black display-flex">
+  <mat-card-content class="mg-auto">
+    <img class="img-login" src="assets/img/logo-login.png" />
+    <form [formGroup]="forma" (ngSubmit)="onSubmit()" autocomplete="off">
+      <h1 class="color-primary title">Iniciar Sesión en su cuenta</h1>
+      <mat-button-toggle-group
+        formControlName="tipoUsuario"
+        style="width: 100%"
+      >
+        <mat-button-toggle value="BMOI" style="width: 50%">
+          Usuario BMOI
+        </mat-button-toggle>
+        <mat-button-toggle value="SELLER" style="width: 50%">
+          Usuario SELLER
+        </mat-button-toggle>
+      </mat-button-toggle-group>
+      <mat-form-field
+        class="full-width-input"
+        appearance="outline"
+        floatLabel="always"
+      >
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="correo" required name="correo" />
+        <mat-error>
+          <mat-icon>info</mat-icon> Ingrese un e-mail válido
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline" floatLabel="always">
+        <mat-label>Contraseña</mat-label>
+        <input
+          matInput
+          [type]="hide ? 'password' : 'text'"
+          formControlName="contrasenia"
+          required
+          name="contrasenia"
+        />
+        <!-- <mat-icon
+          matSuffix
+          (click)="hide = !hide"
+          class="color-primary cursor"
+          >{{ hide ? "visibility_off" : "visibility" }}</mat-icon
+        > -->
+        <button
+          mat-button
+          matSuffix
+          type="button"
+          class="color-primary"
+          (click)="recuperarClave()"
+          class="buton-accion"
+        >
+          ¿Olvidaste tu contraseña?
+        </button>
+        <mat-error>
+          <mat-icon>info</mat-icon> Ingrese una contraseña
+        </mat-error>
+      </mat-form-field>
+      <!-- <div class="accion-login">
+        <mat-checkbox
+          style="width: 50%; text-align: left"
+          class="color-primary"
+          color="primary"
+          name="recordar"
+          formControlName="recordar"
+          >Recordar mi cuenta</mat-checkbox
+        >
+        <button
+          mat-button
+          type="button"
+          class="color-primary"
+          (click)="recuperarClave()"
+          class="buton-accion"
+        >
+          ¿Olvidaste tu contraseña?
+        </button>
+      </div> -->
+      <div style="text-align: center; margin-top: 50px">
+        <button
+          type="submit"
+          mat-raised-button
+          class="background-purple background-green"
+        >
+          INICIAR SESIÓN
+        </button>
+      </div>
+      <div style="margin-top: 10px">
+        <button mat-button>Postular</button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

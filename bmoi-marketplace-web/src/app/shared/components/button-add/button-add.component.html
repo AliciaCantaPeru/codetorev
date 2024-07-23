@@ -1,0 +1,11 @@
+<div class="content-button" *ngIf="permitirModificar || permisoEspecialEditar">
+  <button
+    mat-stroked-button
+    color="primary"
+    class="frig"
+    (click)="agregar.emit()"
+  >
+    <mat-icon>add_circle</mat-icon>
+    <mat-label>Agregar</mat-label>
+  </button>
+</div>

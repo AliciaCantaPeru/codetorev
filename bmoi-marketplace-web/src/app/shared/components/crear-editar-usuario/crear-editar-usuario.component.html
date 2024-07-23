@@ -1,0 +1,96 @@
+<mat-card>
+  <mat-card-header>
+    <h1 *ngIf="permitirModificar">
+      {{ id == -1 ? "Agregar seller" : "Editar seller" }}
+    </h1>
+    <h1 *ngIf="!permitirModificar">Seller</h1>
+  </mat-card-header>
+
+  <mat-card-content>
+    <app-img-view-upload
+      [image]="foto"
+      (imageChange)="imagenChange($event)"
+    ></app-img-view-upload>
+    <mat-tab-group
+      mat-align-tabs="start"
+      dynamicHeight
+      [selectedIndex]="indexTab"
+    >
+      <mat-tab [disabled]="indexTab !== 0">
+        <ng-template mat-tab-label>
+          DATOS DE LA EMPRESA
+          <span
+            class="mat-tab-label-error color-warning"
+            [ngClass]="{ 'error-tab': invalidDatoEmpresa == true }"
+            >*</span
+          >
+        </ng-template>
+        <app-form-dato-empresa></app-form-dato-empresa>
+      </mat-tab>
+      <mat-tab [disabled]="indexTab !== 1">
+        <ng-template mat-tab-label>
+          DATOS DE CONTACTO
+          <span
+            class="mat-tab-label-error color-warning"
+            [ngClass]="{ 'error-tab': invalidDatoPersona == true }"
+            >*</span
+          >
+        </ng-template>
+        <app-form-contacto [tipo]="tipo" [idSeller]="id"></app-form-contacto>
+      </mat-tab>
+      <mat-tab [disabled]="indexTab !== 2">
+        <ng-template mat-tab-label>
+          REDES SOCIALES
+          <span
+            class="mat-tab-label-error color-warning"
+            [ngClass]="{ 'error-tab': invalidDataRedSocial == true }"
+            >*</span
+          >
+        </ng-template>
+        <app-form-red-social></app-form-red-social>
+      </mat-tab>
+      <mat-tab [disabled]="indexTab !== 3">
+        <ng-template mat-tab-label>
+          DIRECCIÓN
+          <span
+            class="mat-tab-label-error color-warning"
+            [ngClass]="{ 'error-tab': invalidDireccion == true }"
+            >*</span
+          >
+        </ng-template>
+        <app-form-direccion></app-form-direccion>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-card-content>
+  <mat-card-actions align="end" style="margin-bottom: 1rem">
+    <button mat-button color="primary" (click)="cerrar()">Cancelar</button>
+    <button
+      mat-button
+      color="primary"
+      type="button"
+      (click)="deplazarTab('A')"
+      *ngIf="indexTab !== 0"
+    >
+      Atrás
+    </button>
+    <button
+      mat-button
+      type="button"
+      color="primary"
+      (click)="deplazarTab('S')"
+      *ngIf="indexTab !== 3"
+    >
+      Siguiente
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      cdkFocusInitial
+      type="button"
+      (click)="guardar()"
+      *ngIf="indexTab === 3 && permitirModificar"
+    >
+      Guardar
+    </button>
+  </mat-card-actions>
+</mat-card>
